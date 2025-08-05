@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yjyfxn4r7afx"
-path="res://.godot/imported/godotwaka2.png-7d3d010fb4adc0d433467ab1cc4754ed.ctex"
+uid="uid://b4vp1o82iqprr"
+path="res://.godot/imported/flashlight cone.png-da6531c59306885bc0b5b121f8c89745.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/godotwaka2.png"
-dest_files=["res://.godot/imported/godotwaka2.png-7d3d010fb4adc0d433467ab1cc4754ed.ctex"]
+source_file="res://Assets/flashlight cone.png"
+dest_files=["res://.godot/imported/flashlight cone.png-da6531c59306885bc0b5b121f8c89745.ctex"]
 
 [params]
 

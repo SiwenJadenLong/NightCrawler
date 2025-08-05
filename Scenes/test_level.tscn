@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://r51i3j8ij1c"]
+
+[ext_resource type="Texture2D" uid="uid://djxgfrjk4fpgt" path="res://images/20250627_022632.jpg" id="1_dtjkg"]
+[ext_resource type="PackedScene" uid="uid://cw2brncu5mcfk" path="res://Objects/player.tscn" id="2_eglq2"]
+
+[node name="Test Level" type="Node2D"]
+
+[node name="backgroundplace" type="Sprite2D" parent="."]
+position = Vector2(1238, 1025)
+texture = ExtResource("1_dtjkg")
+
+[node name="Player" parent="." instance=ExtResource("2_eglq2")]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(0, 5)
+color = Color(0.95158, 0.95158, 0.95158, 1)
+blend_mode = 1
