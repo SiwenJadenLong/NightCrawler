@@ -25,7 +25,7 @@ func _ready() -> void:
 		#tracer.add_point(position+
 
 	var fade_tween = get_tree().create_tween()
-	#fade_tween.tween_property(self, "modulate:a", 0, tracer_timeout)
-	#await fade_tween.finished
-	#fade_tween.kill()
-	#queue_free()
+	fade_tween.tween_property(self, "modulate:a", 0, tracer_timeout)
+	await fade_tween.finished
+	fade_tween.kill()
+	queue_free()
