@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmneqk6ljlwu6"]
+
+[ext_resource type="PackedScene" uid="uid://5rcl06f1funm" path="res://Assets/Class Objects/weapon templete.tscn" id="1_m0clk"]
+
+[node name="weapon" instance=ExtResource("1_m0clk")]
+
+[node name="item held sprite" parent="." index="2"]
+texture_filter = 1
+position = Vector2(18, 0)
+
+[node name="Attachment Point1" parent="." index="3"]
+position = Vector2(48, 4)
+
+[node name="Muzzle Device" parent="." index="4"]
+position = Vector2(78, 0)

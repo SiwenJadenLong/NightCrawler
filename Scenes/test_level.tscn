@@ -14,4 +14,5 @@ texture = ExtResource("1_dtjkg")
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(0, 5)
 color = Color(0.95158, 0.95158, 0.95158, 1)
+energy = 0.86
 blend_mode = 1

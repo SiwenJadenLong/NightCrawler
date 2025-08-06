@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://5rcl06f1funm"]
+
+[ext_resource type="PackedScene" uid="uid://bddrowep0dhh4" path="res://Assets/Class Objects/held_item.tscn" id="1_178e5"]
+
+[node name="weapon" instance=ExtResource("1_178e5")]
+
+[node name="Attachment Point1" type="Marker2D" parent="." index="3"]
+
+[node name="Muzzle Device" type="Marker2D" parent="." index="4"]
