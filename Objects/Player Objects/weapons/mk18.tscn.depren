@@ -7,17 +7,20 @@
 script = ExtResource("2_m0clk")
 total_ammo = 400
 magazine_capacity = 30
-cyclic_rate = 200
+cyclic_rate = 800
+tracer_timeout = 0.03
 
-[node name="item held sprite" parent="." index="2"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." index="0"]
+remote_path = NodePath("../Bullet Spawn")
+update_position = false
+update_scale = false
+
+[node name="item held sprite" parent="." index="3"]
 texture_filter = 1
 position = Vector2(18, 0)
 
-[node name="Attachment Point1" parent="." index="3"]
+[node name="Attachment Point1" parent="." index="4"]
 position = Vector2(48, 4)
 
-[node name="Muzzle Device" parent="." index="4"]
-position = Vector2(78, 0)
-
-[node name="Bullet Spawn" parent="." index="5"]
+[node name="Muzzle Device" parent="." index="5"]
 position = Vector2(78, 0)

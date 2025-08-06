@@ -54,6 +54,8 @@ texture = ExtResource("3_2i4gt")
 [node name="Held Item" type="Node2D" parent="."]
 
 [node name="weapon" parent="Held Item" instance=ExtResource("4_0ad8t")]
+position = Vector2(0, 50)
+cyclic_rate = 300
 
 [node name="Head" type="Node2D" parent="."]
 

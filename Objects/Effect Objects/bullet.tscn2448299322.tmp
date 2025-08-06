@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://bn2h57iae0lr5" path="res://Scripts/bullet.gd" id="1_hy26e"]
 
 [node name="Bullet" type="RayCast2D"]
-target_position = Vector2(5000, 0)
+target_position = Vector2(0, 5000)
 collide_with_areas = true
 script = ExtResource("1_hy26e")
 
 [node name="Tracer" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0)
+width = 5.0

@@ -10,19 +10,16 @@ var damage : float
 # Called when the node enters the scene tree for the first time.
 
 func _ready() -> void:
-	rotation = direction_shot
-	initial_position = global_position
 	
 	tracer.width = tracer_strength
-	tracer.add_point(initial_position)
 	
 	var collider = get_collider()
 	if collider:
 		tracer.add_point(get_collision_point())
 		if (collider.has_method("damage")):
 			collider.damage(damage)
-	#else: 
-		#tracer.add_point(position+
+	else: 
+		tracer.add_point(Vector2.RIGHT * 5000)
 
 	var fade_tween = get_tree().create_tween()
 	fade_tween.tween_property(self, "modulate:a", 0, tracer_timeout)

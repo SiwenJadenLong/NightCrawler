@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmneqk6ljlwu6"]
+
+[ext_resource type="PackedScene" uid="uid://5rcl06f1funm" path="res://Assets/Class Objects/weapon templete.tscn" id="1_m0clk"]
+[ext_resource type="Script" uid="uid://bcwkweg67de5d" path="res://Scripts/helditem.gd" id="2_m0clk"]
+
+[node name="weapon" instance=ExtResource("1_m0clk")]
+script = ExtResource("2_m0clk")
+total_ammo = 400
+magazine_capacity = 30
+cyclic_rate = 800
+tracer_timeout = 0.03
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." index="0"]
+remote_path = NodePath("../Bullet Spawn")
+update_position = false
+update_scale = false
+
+[node name="item held sprite" parent="." index="3"]
+texture_filter = 1
+position = Vector2(18, 0)
+
+[node name="Attachment Point1" parent="." index="4"]
+position = Vector2(48, 4)
+
+[node name="Muzzle Device" parent="." index="5"]
+position = Vector2(78, 0)

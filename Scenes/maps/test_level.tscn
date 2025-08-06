@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://r51i3j8ij1c"]
+[gd_scene load_steps=4 format=3 uid="uid://r51i3j8ij1c"]
 
+[ext_resource type="Script" uid="uid://bdyod6chq6q4" path="res://Scenes/maps/map.gd" id="1_qp5y0"]
 [ext_resource type="Texture2D" uid="uid://djxgfrjk4fpgt" path="res://images/20250627_022632.jpg" id="1_x8avq"]
 [ext_resource type="PackedScene" uid="uid://cw2brncu5mcfk" path="res://Objects/player.tscn" id="2_qp5y0"]
 
 [node name="Test Level" type="Node2D"]
+script = ExtResource("1_qp5y0")
 
 [node name="backgroundplace" type="Sprite2D" parent="."]
 position = Vector2(1238, 1025)
@@ -15,3 +17,5 @@ texture = ExtResource("1_x8avq")
 position = Vector2(0, 5)
 color = Color(0.95158, 0.95158, 0.95158, 1)
 blend_mode = 2
+
+[node name="Objects" type="Node" parent="."]
