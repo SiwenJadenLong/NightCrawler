@@ -1,0 +1,1 @@
+Night Crawler is a top down tactical shooter. Lighting is a huge part of the gameplay. It takes lots of inspration from other tactical fps like "Ready Or Not" and various tactical roblox game such as "Examination" and "Deadline". Scope of the project is still being determined.
