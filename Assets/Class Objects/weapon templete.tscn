@@ -7,3 +7,5 @@
 [node name="Attachment Point1" type="Marker2D" parent="." index="3"]
 
 [node name="Muzzle Device" type="Marker2D" parent="." index="4"]
+
+[node name="Bullet Spawn" type="Marker2D" parent="." index="5"]

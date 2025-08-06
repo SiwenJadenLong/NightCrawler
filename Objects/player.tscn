@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cw2brncu5mcfk"]
+[gd_scene load_steps=8 format=3 uid="uid://cw2brncu5mcfk"]
 
 [ext_resource type="Script" uid="uid://buxmjfl8wli1f" path="res://Scripts/player.gd" id="1_y0qk3"]
 [ext_resource type="Texture2D" uid="uid://ulorwy8n03rf" path="res://Assets/Lighting Textures/flashlight cone11.png" id="2_3y5cq"]
+[ext_resource type="Texture2D" uid="uid://bljrikmb6onar" path="res://Objects/Player Objects/Placeholder hands.tres" id="3_2i4gt"]
+[ext_resource type="PackedScene" uid="uid://bmneqk6ljlwu6" path="res://Objects/Player Objects/weapons/mk18.tscn" id="4_0ad8t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojbdc"]
 radius = 50.0
@@ -39,17 +41,36 @@ energy = 0.6
 texture = ExtResource("2_3y5cq")
 offset = Vector2(1025, 0)
 
-[node name="Weapon" type="Node2D" parent="."]
+[node name="Hands" type="Node2D" parent="."]
+
+[node name="Left Hand" type="Sprite2D" parent="Hands"]
+position = Vector2(84, -40)
+texture = ExtResource("3_2i4gt")
+
+[node name="Right Hand" type="Sprite2D" parent="Hands"]
+position = Vector2(69, 39)
+texture = ExtResource("3_2i4gt")
+
+[node name="Held Item" type="Node2D" parent="."]
+
+[node name="weapon" parent="Held Item" instance=ExtResource("4_0ad8t")]
 
 [node name="Head" type="Node2D" parent="."]
 
-[node name="Hands" type="Node2D" parent="."]
+[node name="Holstered items" type="Node2D" parent="."]
 
-[node name="Control" type="Control" parent="."]
+[node name="Player Indicators" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="State" type="Label" parent="Player Indicators"]
+layout_mode = 0
+offset_left = -19.0
+offset_top = -78.0
+offset_right = 21.0
+offset_bottom = -55.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.8, 0.8)

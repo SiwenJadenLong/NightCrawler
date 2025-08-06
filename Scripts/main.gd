@@ -7,19 +7,19 @@ extends Node
 
 var level_instance;
 
-func unloadLevel():
+func unload_level() -> void:
 	if (is_instance_valid(level_instance)):
 		level_instance.queue_free();
 	level_instance = null;
 
-func loadNewScene(level_number):
-	unloadLevel();
+func load_new_map(map_name) -> void:
+	unload_level();
 	var level_path : String
 #	If
-	if level_number is int:
-		level_path = 
+	if map_name is int:
+		level_path = "res://Scenes/maps/%s.tscn" % str(map_name)
 	else:
-		level_path = 
+		level_path = "res://Scenes/maps/%s.tscn" % map_name
 	
 	var level_resource : PackedScene = load(level_path);
 	if level_resource:
@@ -27,6 +27,5 @@ func loadNewScene(level_number):
 		level_container.add_child(level_instance);
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _ready() -> void:
+	load_new_map("test_level")

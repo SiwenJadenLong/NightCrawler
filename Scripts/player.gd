@@ -4,19 +4,33 @@ extends CharacterBody2D
 @onready var Camera: Camera2D = $Camera2D
 @onready var Body: Node2D = $Body
 @export var body_rotate_speed : float = 0.25 * PI
-
+@onready var held_item: Node2D = $"Held Item"
 
 const SPEED = 300.0
 
 enum states{
 	alive,
 	dead,
+	interacting,
+	reloading,
 	
 }
 
 var playerstate : states = states.alive
 
 var rotation_difference : float = 0
+
+func _ready() -> void:
+	#give_loadout()
+	pass
+
+#func give_loadout() -> void:
+
+#	Give player MK18 as a Held Item as placeholder	
+	#var weapon_to_load : PackedScene = load("res://Objects/Player Objects/weapons/mk18.tscn")
+	#var weapon_instance = weapon_to_load.instantiate()
+	#held_item.add_child(weapon_instance)
+	
 
 func _physics_process(delta: float) -> void:
 	match playerstate:
@@ -28,6 +42,11 @@ func _physics_process(delta: float) -> void:
 				camera_view_ahead()
 			else:
 				Camera.global_position = global_position
+			if Input.is_action_pressed("Shoot"):
+				if held_item.get_child(0) is weapon:
+					held_item.get_child(0).shoot()
+			
+		
 
 func movement():
 	var x_direction := Input.get_axis("left", "right")

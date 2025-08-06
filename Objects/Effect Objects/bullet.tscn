@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgesilm6dvxpt"]
+
+[ext_resource type="Script" uid="uid://bn2h57iae0lr5" path="res://Scripts/bullet.gd" id="1_hy26e"]
+
+[node name="Bullet" type="RayCast2D"]
+rotation = -1.5708
+target_position = Vector2(0, 5000)
+collide_with_areas = true
+script = ExtResource("1_hy26e")
+
+[node name="Tracer" type="Line2D" parent="."]
+width = 5.0
