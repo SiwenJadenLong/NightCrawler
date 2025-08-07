@@ -10,17 +10,24 @@ var damage : float
 # Called when the node enters the scene tree for the first time.
 
 func _ready() -> void:
+#	Me when Godot says nuh uh you have to wait 2 frames for raycasts to work
+	
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	
 	
 	tracer.width = tracer_strength
-	
 	var collider = get_collider()
+	print(get_collider())
+	print(get_collision_point())
 	if collider:
-		tracer.add_point(get_collision_point())
+		var variable = (global_position - get_collision_point()).length()
+		tracer.add_point(Vector2(variable,0))
 		if (collider.has_method("damage")):
 			collider.damage(damage)
 	else: 
 		tracer.add_point(Vector2.RIGHT * 5000)
-
+	
 	var fade_tween = get_tree().create_tween()
 	fade_tween.tween_property(self, "modulate:a", 0, tracer_timeout)
 	await fade_tween.finished

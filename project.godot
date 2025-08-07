@@ -30,6 +30,10 @@ window/size/mode=3
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
+[global_group]
+
+weapon="group for weapon nodes"
+
 [input]
 
 up={

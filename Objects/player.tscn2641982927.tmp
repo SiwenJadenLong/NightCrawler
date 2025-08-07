@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://cw2brncu5mcfk"]
+
+[ext_resource type="Script" uid="uid://buxmjfl8wli1f" path="res://Scripts/player.gd" id="1_y0qk3"]
+[ext_resource type="Texture2D" uid="uid://ulorwy8n03rf" path="res://Assets/Lighting Textures/flashlight cone11.png" id="2_3y5cq"]
+[ext_resource type="Texture2D" uid="uid://bljrikmb6onar" path="res://Objects/Player Objects/Placeholder hands.tres" id="3_2i4gt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ojbdc"]
+radius = 50.0
+
+[sub_resource type="Gradient" id="Gradient_y0qk3"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.714286)
+colors = PackedColorArray(0, 0, 1, 1, 0, 0, 1, 0)
+metadata/_snap_count = 2
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3y5cq"]
+gradient = SubResource("Gradient_y0qk3")
+width = 100
+height = 100
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_y0qk3")
+body_rotate_speed = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ojbdc")
+
+[node name="Legs" type="Node2D" parent="."]
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="body" type="Sprite2D" parent="Body"]
+texture_filter = 1
+texture = SubResource("GradientTexture2D_3y5cq")
+
+[node name="PointLight2D" type="PointLight2D" parent="Body"]
+scale = Vector2(2, 3)
+energy = 0.6
+shadow_enabled = true
+shadow_filter_smooth = 1.0
+texture = ExtResource("2_3y5cq")
+offset = Vector2(1025, 0)
+
+[node name="Hands" type="Node2D" parent="."]
+
+[node name="Left Hand" type="Sprite2D" parent="Hands"]
+position = Vector2(38, 0)
+texture = ExtResource("3_2i4gt")
+
+[node name="Right Hand" type="Sprite2D" parent="Hands"]
+texture = ExtResource("3_2i4gt")
+
+[node name="Held Item" type="Node2D" parent="."]
+
+[node name="Head" type="Node2D" parent="."]
+
+[node name="Holstered items" type="Node2D" parent="."]
+
+[node name="Player Indicators" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="State" type="Label" parent="Player Indicators"]
+layout_mode = 0
+offset_left = -19.0
+offset_top = -78.0
+offset_right = 21.0
+offset_bottom = -55.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.8, 0.8)
+position_smoothing_enabled = true
+position_smoothing_speed = 15.0
