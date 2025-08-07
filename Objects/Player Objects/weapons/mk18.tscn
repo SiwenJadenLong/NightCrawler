@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://5rcl06f1funm" path="res://Assets/Class Objects/weapon templete.tscn" id="1_m0clk"]
 
 [node name="weapon" instance=ExtResource("1_m0clk")]
-total_ammo = 400
+total_ammo = 180
 magazine_capacity = 30
-cyclic_rate = 60
+cyclic_rate = 800
 default_offset = Vector2(25, 30)
 
 [node name="Left Hand" parent="." index="0"]
