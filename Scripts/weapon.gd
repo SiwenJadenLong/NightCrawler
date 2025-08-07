@@ -15,6 +15,8 @@ var can_shoot = true
 
 @export var default_offset : Vector2 = Vector2(0,50)
 
+@export var firing_sound : AudioStream
+
 @onready var shooting_cooldown: Timer = $"Shooting Cooldown"
 
 @onready var left_hand: RemoteTransform2D = $"Left Hand"
@@ -26,6 +28,7 @@ func aim_exact_point_at_cursor():
 func shoot():
 	if can_shoot:
 		var bullet = BULLET.instantiate()
+		sound_manager.playsound(firing_sound, "Sound_Effects")
 		bullet.rotation = global_rotation
 		bullet.tracer_timeout = tracer_timeout
 		bullet.damage = weapon_damage

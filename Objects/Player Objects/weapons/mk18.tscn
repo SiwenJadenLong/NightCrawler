@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmneqk6ljlwu6"]
+[gd_scene load_steps=3 format=3 uid="uid://bmneqk6ljlwu6"]
 
 [ext_resource type="PackedScene" uid="uid://5rcl06f1funm" path="res://Assets/Class Objects/weapon templete.tscn" id="1_m0clk"]
+[ext_resource type="AudioStream" uid="uid://chod6k6ipsfwq" path="res://Assets/Sounds/mk18 shot.wav" id="2_w0ivl"]
 
 [node name="weapon" instance=ExtResource("1_m0clk")]
 total_ammo = 180
 magazine_capacity = 30
 cyclic_rate = 800
 default_offset = Vector2(25, 30)
+firing_sound = ExtResource("2_w0ivl")
 
 [node name="Left Hand" parent="." index="0"]
 position = Vector2(38, 0)

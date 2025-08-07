@@ -16,8 +16,7 @@ enum states{
 	alive,
 	dead,
 	interacting,
-	reloading,
-	
+	reloading
 }
 
 var playerstate : states = states.alive
