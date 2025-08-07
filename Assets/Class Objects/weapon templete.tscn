@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://5rcl06f1funm"]
+[gd_scene load_steps=6 format=3 uid="uid://5rcl06f1funm"]
 
 [ext_resource type="PackedScene" uid="uid://bddrowep0dhh4" path="res://Assets/Class Objects/held_item.tscn" id="1_178e5"]
 [ext_resource type="Script" uid="uid://bcwkweg67de5d" path="res://Scripts/weapon.gd" id="2_7iihs"]
+[ext_resource type="Texture2D" uid="uid://dh6icrrplfkrh" path="res://Assets/Lighting Textures/Muzzle Flash 1.png" id="3_42vgq"]
+[ext_resource type="Texture2D" uid="uid://chtoeqk5jifel" path="res://Assets/Lighting Textures/Muzzle Flash 2.png.png" id="3_xwech"]
+[ext_resource type="Texture2D" uid="uid://bvfa6wd8fmxnw" path="res://Assets/Lighting Textures/Muzzle Flash 3.png" id="5_jlxht"]
 
 [node name="weapon" instance=ExtResource("1_178e5")]
 script = ExtResource("2_7iihs")
+muzzle_flash_textures = Array[Texture2D]([ExtResource("3_42vgq"), ExtResource("3_xwech"), ExtResource("5_jlxht")])
 
 [node name="Left Hand" parent="." index="0" groups=["weapon"]]
 
@@ -12,10 +16,18 @@ script = ExtResource("2_7iihs")
 
 [node name="Muzzle Device" type="Marker2D" parent="." index="4"]
 
+[node name="muzzle flash lighting" type="PointLight2D" parent="Muzzle Device" index="0"]
+visible = false
+color = Color(1, 0.75, 0, 1)
+
+[node name="muzzle flash" type="PointLight2D" parent="Muzzle Device" index="1"]
+
 [node name="Bullet Spawn" type="Marker2D" parent="." index="5"]
 
 [node name="Shooting Cooldown" type="Timer" parent="." index="6"]
 process_callback = 0
 wait_time = 0.1
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="7"]
 
 [connection signal="timeout" from="Shooting Cooldown" to="." method="_on_shooting_cooldown_timeout"]

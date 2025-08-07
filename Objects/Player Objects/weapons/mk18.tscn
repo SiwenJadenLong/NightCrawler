@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmneqk6ljlwu6"]
+[gd_scene load_steps=7 format=3 uid="uid://bmneqk6ljlwu6"]
 
 [ext_resource type="PackedScene" uid="uid://5rcl06f1funm" path="res://Assets/Class Objects/weapon templete.tscn" id="1_m0clk"]
 [ext_resource type="AudioStream" uid="uid://chod6k6ipsfwq" path="res://Assets/Sounds/mk18 shot.wav" id="2_w0ivl"]
 [ext_resource type="AudioStream" uid="uid://dkjmvgt1waw3n" path="res://Assets/Sounds/mk18 bullet casing drop.wav" id="3_m3aoo"]
+[ext_resource type="Texture2D" uid="uid://cssre7pxhilue" path="res://Assets/Lighting Textures/Muzzle Flash Light.png" id="4_s76kd"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s76kd"]
+load_path = "res://.godot/imported/Muzzle Flash 1.png-877630213624de0095ffe5d7b63d884a.ctex"
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_m3aoo"]
+cull_mode = 1
+polygon = PackedVector2Array(65, -4, 12, -4, 8, -4, -6, -4, -7, -3, -18, -3, -21, -5, -41, -5, -42, -4, -42, 4, -41, 5, -21, 5, -19, 3, -7, 3, -2, 4, 3, 4, 9, 4, 65, 4)
 
 [node name="weapon" instance=ExtResource("1_m0clk")]
 cyclic_rate = 800
@@ -29,9 +37,27 @@ position = Vector2(48, 4)
 [node name="Muzzle Device" parent="." index="4"]
 position = Vector2(78, 0)
 
+[node name="muzzle flash lighting" parent="Muzzle Device" index="0"]
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_item_cull_mask = 3
+texture = ExtResource("4_s76kd")
+
+[node name="muzzle flash" parent="Muzzle Device" index="1"]
+visible = false
+energy = 2.0
+texture = SubResource("CompressedTexture2D_s76kd")
+offset = Vector2(50, 0)
+texture_scale = 0.1
+
 [node name="Bullet Spawn" parent="." index="5"]
 position = Vector2(78, 0)
 
 [node name="Shooting Cooldown" parent="." index="6"]
 wait_time = 0.001
 autostart = true
+
+[node name="LightOccluder2D" parent="." index="7"]
+visible = false
+rotation = -0.000261322
+occluder = SubResource("OccluderPolygon2D_m3aoo")
