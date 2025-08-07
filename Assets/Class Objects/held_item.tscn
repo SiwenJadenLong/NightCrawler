@@ -4,9 +4,9 @@
 
 [node name="held_item" type="Node2D"]
 
-[node name="Left Hand" type="Marker2D" parent="."]
+[node name="Left Hand" type="RemoteTransform2D" parent="."]
 
-[node name="Right Hand" type="Marker2D" parent="."]
+[node name="Right Hand" type="RemoteTransform2D" parent="."]
 
 [node name="item held sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_2sikc")

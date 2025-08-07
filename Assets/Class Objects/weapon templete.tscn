@@ -1,11 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://5rcl06f1funm"]
+[gd_scene load_steps=3 format=3 uid="uid://5rcl06f1funm"]
 
 [ext_resource type="PackedScene" uid="uid://bddrowep0dhh4" path="res://Assets/Class Objects/held_item.tscn" id="1_178e5"]
+[ext_resource type="Script" uid="uid://bcwkweg67de5d" path="res://Scripts/weapon.gd" id="2_7iihs"]
 
 [node name="weapon" instance=ExtResource("1_178e5")]
+script = ExtResource("2_7iihs")
+
+[node name="Left Hand" parent="." index="0" groups=["weapon"]]
 
 [node name="Attachment Point1" type="Marker2D" parent="." index="3"]
 
 [node name="Muzzle Device" type="Marker2D" parent="." index="4"]
 
 [node name="Bullet Spawn" type="Marker2D" parent="." index="5"]
+
+[node name="Shooting Cooldown" type="Timer" parent="." index="6"]
+process_callback = 0
+wait_time = 0.1
+
+[connection signal="timeout" from="Shooting Cooldown" to="." method="_on_shooting_cooldown_timeout"]

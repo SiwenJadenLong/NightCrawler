@@ -1,13 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmneqk6ljlwu6"]
+[gd_scene load_steps=2 format=3 uid="uid://bmneqk6ljlwu6"]
 
 [ext_resource type="PackedScene" uid="uid://5rcl06f1funm" path="res://Assets/Class Objects/weapon templete.tscn" id="1_m0clk"]
-[ext_resource type="Script" uid="uid://bcwkweg67de5d" path="res://Scripts/weapon.gd" id="2_m0clk"]
 
 [node name="weapon" instance=ExtResource("1_m0clk")]
-script = ExtResource("2_m0clk")
 total_ammo = 400
 magazine_capacity = 30
-cyclic_rate = 200
+cyclic_rate = 60
+default_offset = Vector2(25, 30)
+
+[node name="Left Hand" parent="." index="0"]
+position = Vector2(38, 0)
+remote_path = NodePath("../../../Hands/Left Hand")
+
+[node name="Right Hand" parent="." index="1" groups=["weapon"]]
+remote_path = NodePath("../../../Hands/Right Hand")
 
 [node name="item held sprite" parent="." index="2"]
 texture_filter = 1
@@ -21,3 +27,7 @@ position = Vector2(78, 0)
 
 [node name="Bullet Spawn" parent="." index="5"]
 position = Vector2(78, 0)
+
+[node name="Shooting Cooldown" parent="." index="6"]
+wait_time = 0.001
+autostart = true
