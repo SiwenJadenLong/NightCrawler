@@ -9,7 +9,8 @@ extends CharacterBody2D
 @onready var right_hand: Sprite2D = $"Hands/Right Hand"
 
 
-var debug : bool = false
+var cameralocked : bool = true
+var debug : bool = true
 const SPEED = 300.0
 
 enum states{
@@ -48,14 +49,20 @@ func _physics_process(delta: float) -> void:
 			movement()
 			move_and_slide()
 			turn_to_cursor(delta)
-			if Input.is_action_pressed("view ahead"):
-				camera_view_ahead()
-			else:
+			if Input.is_action_just_pressed("view ahead"):
+				cameralocked = !cameralocked
+			if cameralocked:
 				Camera.global_position = global_position
+			else:
+				camera_view_ahead()
+			
 			if Input.is_action_pressed("Shoot"):
 				if held_item.get_child(0):
 					if held_item.get_child(0) is weapon:
 						held_item.get_child(0).shoot()
+			if Input.is_action_just_pressed("Flashlight toggle"):
+#				Placeholder for placeholder flashflight
+				$Body/PointLight2D.visible = !$Body/PointLight2D.visible
 			
 		
 
