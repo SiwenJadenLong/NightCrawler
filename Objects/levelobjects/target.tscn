@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://5os4sx1et47m"]
+
+[ext_resource type="Script" uid="uid://ckjq5s0i30o4c" path="res://Objects/levelobjects/static_killable_object.gd" id="1_46grp"]
+[ext_resource type="Texture2D" uid="uid://cph7nlte4f3tf" path="res://images/Object Images/targetplace.png" id="1_k3xtw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_46grp"]
+radius = 50.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_76rm7"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 40.0
+linear_accel_max = 100.0
+scale_min = 0.3
+scale_max = 0.5
+
+[node name="Target" type="StaticBody2D"]
+script = ExtResource("1_46grp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_46grp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_k3xtw")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+amount = 3
+texture = ExtResource("1_k3xtw")
+process_material = SubResource("ParticleProcessMaterial_76rm7")

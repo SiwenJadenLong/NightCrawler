@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var right_hand: Sprite2D = $"Hands/Right Hand"
 
 
-var debug : bool = true
+var debug : bool = false
 const SPEED = 300.0
 
 enum states{
@@ -32,7 +32,7 @@ func give_loadout() -> void:
 	#Give player MK18 as a Held Item as placeholder	
 	var weapon_to_load : PackedScene = load("res://Objects/Player Objects/weapons/mk18.tscn")
 	var weapon_instance = weapon_to_load.instantiate()
-	weapon_instance.position = weapon_instance.default_offset
+	weapon_instance.position = weapon_instance.default_left_hand_offset
 	held_item.add_child(weapon_instance)
 	
 

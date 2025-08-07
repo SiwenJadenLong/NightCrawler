@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://r51i3j8ij1c"]
+[gd_scene load_steps=6 format=3 uid="uid://r51i3j8ij1c"]
 
 [ext_resource type="Script" uid="uid://bdyod6chq6q4" path="res://Scenes/maps/map.gd" id="1_qp5y0"]
 [ext_resource type="Texture2D" uid="uid://djxgfrjk4fpgt" path="res://images/20250627_022632.jpg" id="1_x8avq"]
 [ext_resource type="PackedScene" uid="uid://cw2brncu5mcfk" path="res://Objects/player.tscn" id="2_qp5y0"]
+[ext_resource type="PackedScene" uid="uid://5os4sx1et47m" path="res://Objects/levelobjects/target.tscn" id="4_f3cnq"]
 [ext_resource type="PackedScene" uid="uid://bpdkwxngy8gr6" path="res://Objects/levelobjects/wall.tscn" id="4_slvdh"]
 
 [node name="Test Level" type="Node2D"]
@@ -16,11 +17,82 @@ texture = ExtResource("1_x8avq")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(0, 5)
-color = Color(0.95158, 0.95158, 0.95158, 1)
 blend_mode = 1
 
 [node name="Objects" type="Node" parent="."]
 
-[node name="StaticBody2D" parent="." instance=ExtResource("4_slvdh")]
-position = Vector2(1043, 92)
+[node name="Target2" parent="Objects" instance=ExtResource("4_f3cnq")]
+position = Vector2(1115, 674)
+
+[node name="Target" parent="Objects" instance=ExtResource("4_f3cnq")]
+position = Vector2(1115, -43)
+
+[node name="Target3" parent="Objects" instance=ExtResource("4_f3cnq")]
+position = Vector2(1412, 291)
+
+[node name="Target4" parent="Objects" instance=ExtResource("4_f3cnq")]
+position = Vector2(2397, 457)
+
+[node name="Target5" parent="Objects" instance=ExtResource("4_f3cnq")]
+position = Vector2(1575, 959)
+
+[node name="Target6" parent="Objects" instance=ExtResource("4_f3cnq")]
+position = Vector2(1575, -43)
+
+[node name="Target7" parent="Objects" instance=ExtResource("4_f3cnq")]
+position = Vector2(2397, -43)
+
+[node name="Target8" parent="Objects" instance=ExtResource("4_f3cnq")]
+position = Vector2(1940, 291)
+
+[node name="Map" type="Node2D" parent="."]
+
+[node name="StaticBody2D" parent="Map" instance=ExtResource("4_slvdh")]
+position = Vector2(1030, 134)
 rotation = -1.57079
+
+[node name="StaticBody2D2" parent="Map" instance=ExtResource("4_slvdh")]
+position = Vector2(1260, -132)
+
+[node name="StaticBody2D3" parent="Map" instance=ExtResource("4_slvdh")]
+position = Vector2(1030, 803)
+rotation = -1.57079
+
+[node name="wall_place" parent="Map" instance=ExtResource("4_slvdh")]
+position = Vector2(1170, 573)
+scale = Vector2(0.640002, 1)
+
+[node name="wall_place2" parent="Map" instance=ExtResource("4_slvdh")]
+position = Vector2(1260, 1033)
+
+[node name="wall_place3" parent="Map" instance=ExtResource("4_slvdh")]
+position = Vector2(1490, 803)
+rotation = -1.57079
+
+[node name="wall_place4" parent="Map" instance=ExtResource("4_slvdh")]
+position = Vector2(1350, 368)
+scale = Vector2(0.640002, 1)
+
+[node name="wall_place5" parent="Map" instance=ExtResource("4_slvdh")]
+position = Vector2(1490, 138)
+rotation = -1.57079
+
+[node name="wall_place10" parent="Map" instance=ExtResource("4_slvdh")]
+position = Vector2(2489, 461)
+rotation = -1.57079
+scale = Vector2(2.36, 1)
+
+[node name="wall_place9" parent="Map" instance=ExtResource("4_slvdh")]
+position = Vector2(2259, 1033)
+
+[node name="wall_place8" parent="Map" instance=ExtResource("4_slvdh")]
+position = Vector2(1760, 1033)
+
+[node name="wall_place7" parent="Map" instance=ExtResource("4_slvdh")]
+position = Vector2(1760, 368)
+
+[node name="wall_place11" parent="Map" instance=ExtResource("4_slvdh")]
+position = Vector2(2259, -132)
+
+[node name="wall_place6" parent="Map" instance=ExtResource("4_slvdh")]
+position = Vector2(1760, -132)

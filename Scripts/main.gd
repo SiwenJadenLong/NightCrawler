@@ -25,7 +25,7 @@ func load_new_map(map_name) -> void:
 	if level_resource:
 		level_instance = level_resource.instantiate();
 		level_container.add_child(level_instance);
-	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
 
 func _ready() -> void:
 	load_new_map("test_level")
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);

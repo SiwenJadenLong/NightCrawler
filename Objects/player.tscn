@@ -43,6 +43,7 @@ texture = SubResource("GradientTexture2D_3y5cq")
 scale = Vector2(2, 4)
 energy = 0.6
 shadow_enabled = true
+shadow_filter = 2
 shadow_filter_smooth = 1.0
 texture = ExtResource("2_3y5cq")
 offset = Vector2(1025, 0)

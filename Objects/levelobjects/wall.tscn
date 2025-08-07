@@ -6,7 +6,7 @@ size = Vector2(500, 40)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_c5wrs"]
 polygon = PackedVector2Array(-250, -20, 250, -20, 250, 20, -250, 20)
 
-[node name="StaticBody2D" type="StaticBody2D"]
+[node name="wall_place" type="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_q54lr")
