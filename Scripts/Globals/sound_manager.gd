@@ -19,3 +19,6 @@ func changeBGMusic(musicname : String) -> void:
 	BG_music_player.stop()
 	BG_music_player.stream = load("res://assets/music/%s.ogg" % musicname)
 	BG_music_player.play()
+
+func play_2D_sound(sound: AudioStream, sound_origin : Vector2) -> void:
+	pass
