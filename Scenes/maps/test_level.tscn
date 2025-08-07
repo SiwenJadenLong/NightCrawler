@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://r51i3j8ij1c"]
+[gd_scene load_steps=7 format=3 uid="uid://r51i3j8ij1c"]
 
 [ext_resource type="Script" uid="uid://bdyod6chq6q4" path="res://Scenes/maps/map.gd" id="1_qp5y0"]
 [ext_resource type="Texture2D" uid="uid://djxgfrjk4fpgt" path="res://images/20250627_022632.jpg" id="1_x8avq"]
 [ext_resource type="PackedScene" uid="uid://cw2brncu5mcfk" path="res://Objects/player.tscn" id="2_qp5y0"]
 [ext_resource type="PackedScene" uid="uid://5os4sx1et47m" path="res://Objects/levelobjects/target.tscn" id="4_f3cnq"]
 [ext_resource type="PackedScene" uid="uid://bpdkwxngy8gr6" path="res://Objects/levelobjects/wall.tscn" id="4_slvdh"]
+[ext_resource type="PackedScene" uid="uid://c0gu5kk41jnjf" path="res://Objects/levelobjects/flood_light.tscn" id="5_1q41e"]
 
 [node name="Test Level" type="Node2D"]
 script = ExtResource("1_qp5y0")
@@ -44,6 +45,10 @@ position = Vector2(2397, -43)
 
 [node name="Target8" parent="Objects" instance=ExtResource("4_f3cnq")]
 position = Vector2(1940, 291)
+
+[node name="FloodLight" parent="Objects" instance=ExtResource("5_1q41e")]
+position = Vector2(230, 909)
+rotation = -0.523598
 
 [node name="Map" type="Node2D" parent="."]
 
