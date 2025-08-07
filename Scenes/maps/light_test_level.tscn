@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbj3pquchux8"]
+
+[ext_resource type="PackedScene" uid="uid://r51i3j8ij1c" path="res://Scenes/maps/test_level.tscn" id="1_o0r0h"]
+
+[node name="Test Level" instance=ExtResource("1_o0r0h")]
+
+[node name="DirectionalLight2D" parent="." index="2"]
+blend_mode = 2

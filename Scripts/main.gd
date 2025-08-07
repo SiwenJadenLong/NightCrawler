@@ -28,4 +28,4 @@ func load_new_map(map_name) -> void:
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
 
 func _ready() -> void:
-	load_new_map("test_level")
+	load_new_map("light_test_level")
