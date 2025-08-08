@@ -24,7 +24,7 @@ var playerstate : states = states.alive
 var rotation_difference : float = 0
 
 func _ready() -> void:
-	await give_loadout()
+	give_loadout()
 	set_hands_to_item()
 
 func give_loadout() -> void:
@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 		states.alive:
 			movement()
 			move_and_slide()
-			turn_to_cursor(delta)
+			turn_to_cursor()
 			if Input.is_action_just_pressed("view ahead"):
 				cameralocked = !cameralocked
 			if cameralocked:
@@ -78,7 +78,7 @@ func set_hands_to_item():
 	left_hand.position = held_item.get_child(0).get_node("Left Hand").position
 	right_hand.position = held_item.get_child(0).get_node("Right Hand").position
 
-func turn_to_cursor(delta):
+func turn_to_cursor():
 	Body.rotation = get_angle_to(get_global_mouse_position())
 	held_item.global_rotation = get_angle_to(get_global_mouse_position())
 	

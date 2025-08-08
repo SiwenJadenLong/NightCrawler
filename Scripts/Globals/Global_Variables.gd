@@ -1,4 +1,4 @@
 extends Node
 
 
-@export var debug : bool = true
+@export var debug : bool

@@ -66,13 +66,16 @@ var current_roundcount : int
 
 
 func _ready() -> void:
+#	debug code
+	debug.visible = GlobalVariables.debug
+
 #	Gives gun starting amount of magazines
 	for i in range(starting_mags):
 		magazines.append(mag_capacity)
-	
-#	Placeholder current mag = 30, needs to pick up a mag
+#	Pops first magazine into gun
 	current_roundcount = magazines.pop_front()
-	
+
+#currently placeholder, will stop using once recoil is created
 func aim_exact_point_at_cursor():
 	look_at(get_global_mouse_position())
 
@@ -91,7 +94,7 @@ func shoot():
 
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	aim_exact_point_at_cursor()
 	
 	if GlobalVariables.debug:
@@ -129,7 +132,7 @@ func _physics_process(delta: float) -> void:
 		states.bolt_back_mag:
 			if Input.is_action_just_pressed("Shoot"):
 				if current_roundcount == 0:
-					sound_manager.playsound(hammer_drop, "Sound Effects", false)
+					sound_manager.play_2D_sound(global_position, hammer_drop,"Sound Effects", false)
 					
 			if Input.is_action_just_pressed("Reload"):
 				reload_transition = true
@@ -149,21 +152,22 @@ func _physics_process(delta: float) -> void:
 				
 
 func release_bolt():
-	sound_manager.playsound(bolt_forward, "Sound Effects", false)
+	sound_manager.play_2D_sound(global_position, bolt_forward,"Sound Effects", false)
 	chambered = true
 	weaponstate = states.chambered_mag
 	new_mag = false
 	reload_transition = false
 
+#TODO Make reload timing adjustible via variable
 func insert_new_mag():
-	sound_manager.playsound(mag_insert, "Sound Effects", true)
+	sound_manager.play_2D_sound(global_position, mag_insert,"Sound Effects", true)
 	await get_tree().create_timer(1).timeout
 	current_roundcount = magazines.pop_front()
 	weaponstate = states.bolt_back_mag
 	new_mag = true
 
 func eject_and_retain_mag():
-	sound_manager.playsound(mag_eject, "Sound Effects", true)
+	sound_manager.play_2D_sound(global_position, mag_eject,"Sound Effects", true)
 	magazines.append(current_roundcount)
 	weaponstate = states.bolt_back_no_mag
 	current_roundcount = 0
@@ -180,7 +184,7 @@ func pickupround():
 		current_roundcount -= 1
 
 func play_firing_sounds():
-	sound_manager.playsound(firing_sound, "Sound Effects")
+	sound_manager.play_2D_sound(muzzle_flash.global_position, firing_sound,"Sound Effects", false)
 	await get_tree().create_timer(randf_range(1-bullet_case_delay_variance,1+bullet_case_delay_variance)).timeout
 	sound_manager.playsound(bullet_case_drop_sound, "Sound Effects")
 #
