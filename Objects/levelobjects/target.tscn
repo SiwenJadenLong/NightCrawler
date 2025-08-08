@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://5os4sx1et47m"]
+[gd_scene load_steps=6 format=3 uid="uid://5os4sx1et47m"]
 
-[ext_resource type="Script" uid="uid://ckjq5s0i30o4c" path="res://Objects/levelobjects/static_killable_object.gd" id="1_46grp"]
+[ext_resource type="Script" uid="uid://ckjq5s0i30o4c" path="res://Scripts/static_killable_object.gd" id="1_46grp"]
 [ext_resource type="Texture2D" uid="uid://cph7nlte4f3tf" path="res://images/Level Object Images/targetplace.png" id="1_k3xtw"]
+[ext_resource type="AudioStream" uid="uid://cygag5m6kfk1v" path="res://Assets/Sounds/Object sounds/steel hit.wav" id="2_76rm7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46grp"]
 radius = 50.0
@@ -16,6 +17,7 @@ scale_max = 0.5
 
 [node name="Target" type="StaticBody2D"]
 script = ExtResource("1_46grp")
+hit_sound = ExtResource("2_76rm7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_46grp")

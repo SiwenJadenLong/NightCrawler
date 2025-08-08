@@ -121,7 +121,7 @@ func _physics_process(_delta: float) -> void:
 			if current_roundcount == 0:
 				weaponstate = states.bolt_back_mag
 			if Input.is_action_just_pressed("Reload"):
-#				todo
+#				TODO make topping off reloads possible :\
 				pass
 		states.unchambered_mag:
 			pass

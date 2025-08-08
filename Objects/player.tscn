@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cw2brncu5mcfk"]
+[gd_scene load_steps=17 format=3 uid="uid://cw2brncu5mcfk"]
 
 [ext_resource type="Script" uid="uid://buxmjfl8wli1f" path="res://Scripts/player.gd" id="1_y0qk3"]
 [ext_resource type="Texture2D" uid="uid://ulorwy8n03rf" path="res://Assets/Lighting Textures/flashlight cone11.png" id="2_3y5cq"]
 [ext_resource type="Texture2D" uid="uid://bljrikmb6onar" path="res://Objects/Player Objects/Placeholder hands.tres" id="3_2i4gt"]
 [ext_resource type="Material" uid="uid://dvd6xihwwjifk" path="res://Assets/Resources/Always Brighttres.tres" id="4_0ad8t"]
+[ext_resource type="PackedScene" uid="uid://j0spu0hfv8rw" path="res://Objects/mag icon.tscn" id="5_x20fu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojbdc"]
 radius = 50.0
@@ -50,6 +51,8 @@ font_size = 50
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ad8t"]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_y0qk3")
 
@@ -68,8 +71,9 @@ texture = SubResource("GradientTexture2D_3y5cq")
 light_mask = 7
 position = Vector2(50, 0)
 scale = Vector2(2, 4)
+energy = 1.5
 shadow_enabled = true
-shadow_filter = 2
+shadow_filter = 1
 shadow_filter_smooth = 1.0
 shadow_item_cull_mask = 3
 texture = ExtResource("2_3y5cq")
@@ -111,28 +115,63 @@ occluder_light_mask = 2
 [node name="Holstered items" type="Node2D" parent="."]
 
 [node name="Player Indicators" type="Control" parent="."]
-light_mask = 63
-visibility_layer = 63
+light_mask = 0
+custom_minimum_size = Vector2(1000, 1000)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="State" type="Label" parent="Player Indicators"]
 material = ExtResource("4_0ad8t")
 layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.8
-anchor_top = -2.45
-anchor_right = 0.2
-anchor_bottom = -1.45
-offset_left = 12.0
-offset_right = 12.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -34.5
+offset_right = 0.5
+offset_bottom = 34.5
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(20, 20)
 label_settings = SubResource("LabelSettings_2i4gt")
 horizontal_alignment = 1
+
+[node name="Player Com" type="Panel" parent="Player Indicators"]
+visible = false
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0ad8t")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player Indicators/Player Com"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 0)
+theme_override_constants/separation = -50
+alignment = 1
+
+[node name="TextureProgressBar" parent="Player Indicators/Player Com/HBoxContainer" instance=ExtResource("5_x20fu")]
+layout_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.8, 0.8)
@@ -140,3 +179,6 @@ process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 15.0
 editor_draw_limits = true
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Camera2D"]
+current = true

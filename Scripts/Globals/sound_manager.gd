@@ -21,14 +21,21 @@ func changeBGMusic(musicname : String) -> void:
 	BG_music_player.stream = load("res://assets/music/%s.ogg" % musicname)
 	BG_music_player.play()
 
-func play_2D_sound(sound_origin : Vector2, sound: AudioStream, audio_Bus : String = "Master", pitch_adjusted : bool = true) -> void:
+func play_2D_sound(sound_origin : Vector2, sound: AudioStream, audio_Bus : String = "Master", pitch_adjustment = true) -> void:
 	var newsound = AudioStreamPlayer2D.new()
+	newsound.max_distance = 3000
 	newsound.position = sound_origin
 	newsound.bus = audio_Bus
 	newsound.autoplay = true
 	newsound.stream = sound
-	if pitch_adjusted:
-		newsound.pitch_scale = randf_range(1,1.2)
+	newsound.panning_strength = 3
+	if pitch_adjustment == true:
+#		default pitch range
+		newsound.pitch_scale = randf_range(0.8,1.2)  
+	elif !pitch_adjustment:
+		newsound.pitch_scale = 1
+	else:
+		newsound.pitch_scale = pitch_adjustment
 	add_child(newsound)
 	await newsound.finished
 	newsound.queue_free()
