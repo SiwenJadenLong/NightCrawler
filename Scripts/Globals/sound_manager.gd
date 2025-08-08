@@ -1,12 +1,13 @@
 extends Node
 var BG_music_player
 
-func playsound(sound : AudioStream, audio_Bus : String = "Master") -> void:
+func playsound(sound : AudioStream, audio_Bus : String = "Master", pitch_adjusted : bool = true) -> void:
 	var newsound = AudioStreamPlayer.new()
 	newsound.bus = audio_Bus
 	newsound.autoplay = true
 	newsound.stream = sound
-	newsound.pitch_scale = randf_range(1,1.2)
+	if pitch_adjusted:
+		newsound.pitch_scale = randf_range(1,1.2)
 	add_child(newsound)
 	await newsound.finished
 	newsound.queue_free()

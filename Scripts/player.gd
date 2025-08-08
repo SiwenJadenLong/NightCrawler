@@ -10,7 +10,6 @@ extends CharacterBody2D
 
 
 var cameralocked : bool = true
-var debug : bool = true
 const SPEED = 300.0
 
 enum states{
@@ -38,7 +37,7 @@ func give_loadout() -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	if debug:
+	if GlobalVariables.debug:
 		match playerstate:
 			states.alive:
 				$"Player Indicators/State".text = "alive"
@@ -56,10 +55,6 @@ func _physics_process(delta: float) -> void:
 			else:
 				camera_view_ahead()
 			
-			if Input.is_action_pressed("Shoot"):
-				if held_item.get_child(0):
-					if held_item.get_child(0) is weapon:
-						held_item.get_child(0).shoot()
 			if Input.is_action_just_pressed("Flashlight toggle"):
 #				Placeholder for placeholder flashflight
 				$Body/PointLight2D.visible = !$Body/PointLight2D.visible

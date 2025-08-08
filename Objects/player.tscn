@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://buxmjfl8wli1f" path="res://Scripts/player.gd" id="1_y0qk3"]
 [ext_resource type="Texture2D" uid="uid://ulorwy8n03rf" path="res://Assets/Lighting Textures/flashlight cone11.png" id="2_3y5cq"]
 [ext_resource type="Texture2D" uid="uid://bljrikmb6onar" path="res://Objects/Player Objects/Placeholder hands.tres" id="3_2i4gt"]
+[ext_resource type="Material" uid="uid://dvd6xihwwjifk" path="res://Assets/Resources/Always Brighttres.tres" id="4_0ad8t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojbdc"]
 radius = 50.0
@@ -43,9 +44,6 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_x20fu"]
 cull_mode = 1
 polygon = PackedVector2Array(-5.1, -18.1, -8.1, -17.1, -10.1, -16.1, -16.1, -10.1, -17.1, -8.1, -18.1, -5.1, -18.1, 5.1, -17.1, 8.1, -16.1, 10.1, -10.1, 16.1, -8.1, 17.1, -5.1, 18.1, 5.1, 18.1, 8.1, 17.1, 10, 16, 16.1, 10.1, 17.1, 8.1, 18.1, 5.1, 18.1, -5.1, 17.1, -8.1, 16.1, -10.1, 10.1, -16.1, 8.1, -17.1, 5.1, -18.1)
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2i4gt"]
-light_mode = 1
 
 [sub_resource type="LabelSettings" id="LabelSettings_2i4gt"]
 font_size = 50
@@ -121,7 +119,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="State" type="Label" parent="Player Indicators"]
-material = SubResource("CanvasItemMaterial_2i4gt")
+material = ExtResource("4_0ad8t")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.8

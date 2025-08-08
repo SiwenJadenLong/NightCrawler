@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://5os4sx1et47m"]
 
 [ext_resource type="Script" uid="uid://ckjq5s0i30o4c" path="res://Objects/levelobjects/static_killable_object.gd" id="1_46grp"]
-[ext_resource type="Texture2D" uid="uid://cph7nlte4f3tf" path="res://images/Object Images/targetplace.png" id="1_k3xtw"]
+[ext_resource type="Texture2D" uid="uid://cph7nlte4f3tf" path="res://images/Level Object Images/targetplace.png" id="1_k3xtw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46grp"]
 radius = 50.0

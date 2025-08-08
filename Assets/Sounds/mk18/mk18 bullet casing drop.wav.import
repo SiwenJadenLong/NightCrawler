@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dkjmvgt1waw3n"
-path="res://.godot/imported/mk18 bullet casing drop.wav-c316eb35cf8732b0a70c3bd4326b1ee6.sample"
+path="res://.godot/imported/mk18 bullet casing drop.wav-5d3ba99d0465d87f3bb8ca0ae3840033.sample"
 
 [deps]
 
-source_file="res://Assets/Sounds/mk18 bullet casing drop.wav"
-dest_files=["res://.godot/imported/mk18 bullet casing drop.wav-c316eb35cf8732b0a70c3bd4326b1ee6.sample"]
+source_file="res://Assets/Sounds/mk18/mk18 bullet casing drop.wav"
+dest_files=["res://.godot/imported/mk18 bullet casing drop.wav-5d3ba99d0465d87f3bb8ca0ae3840033.sample"]
 
 [params]
 

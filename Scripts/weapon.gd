@@ -4,14 +4,19 @@ class_name weapon
 
 
 const BULLET = preload("res://Objects/Effect Objects/bullet.tscn")
-var can_shoot = true
 
+var can_shoot = true
+var chambered = true
+
+var reload_transition = false
+var new_mag = false
+var inserting_new_mag = false
 
 @export_category("Stats")
 @export var weapon_damage : int = 40
 @export var cyclic_rate : int
-@export var total_ammo : int
-@export var magazine_capacity : int
+@export var starting_mags : int
+@export var mag_capacity : int
 
 
 @export_category("Positioning")
@@ -24,7 +29,15 @@ var can_shoot = true
 @export_subgroup("Sounds")
 @export var firing_sound : AudioStream
 @export var bullet_case_drop_sound : AudioStream
-@export var bullet_case_delay : float = 0.2
+@export var bullet_case_delay_variance : float = 0.2
+
+@export var mag_eject : AudioStream
+@export var mag_insert : AudioStream
+@export var hammer_drop : AudioStream
+@export var dead_trigger : AudioStream
+@export var bolt_forward : AudioStream
+@export var bold_backward : AudioStream
+
 
 @onready var bullet_spawn: Marker2D = $"Bullet Spawn"
 @onready var shooting_cooldown: Timer = $"Shooting Cooldown"
@@ -33,22 +46,38 @@ var can_shoot = true
 @onready var muzzle_flash_lighting: PointLight2D = $"Muzzle Device/muzzle flash lighting"
 @onready var muzzle_flash: PointLight2D = $"Muzzle Device/muzzle flash"
 
-enum weaponstates{
+enum states{
 	chambered_mag,
 	unchambered_mag,
 	chambered_no_mag,
 	unchambered_no_mag,
 	bolt_back_mag,
 	bolt_back_no_mag
-	
 }
 
+var weaponstate : states = states.chambered_mag
+var magazines : Array[int]
+var current_roundcount : int
 
+#Debug variables:
+@onready var debug: Node2D = $debug
+@onready var state_label: Label = $"debug/State Label"
+
+
+
+func _ready() -> void:
+#	Gives gun starting amount of magazines
+	for i in range(starting_mags):
+		magazines.append(mag_capacity)
+	
+#	Placeholder current mag = 30, needs to pick up a mag
+	current_roundcount = magazines.pop_front()
+	
 func aim_exact_point_at_cursor():
 	look_at(get_global_mouse_position())
 
 func shoot():
-	if can_shoot:
+	if chambered:
 		play_firing_sounds()
 		show_muzzle_flash()
 		var bullet = BULLET.instantiate()
@@ -57,16 +86,103 @@ func shoot():
 		bullet.damage = weapon_damage
 		bullet.initial_position = bullet_spawn.global_position
 		SignalBus.newobject.emit(bullet_spawn.global_position, bullet)
+		chambered = false
 		shooting_cooldown.start(1.0/(cyclic_rate/60.0))
-		can_shoot = false
+
+
 
 func _physics_process(delta: float) -> void:
 	aim_exact_point_at_cursor()
+	
+	if GlobalVariables.debug:
+		debug.global_rotation = 0
+		match weaponstate:
+			states.chambered_mag:
+				state_label.text = "chambered_mag"
+			states.unchambered_mag:
+				state_label.text = "unchambered_mag"
+			states.chambered_no_mag:
+				state_label.text = "chambered_no_mag"
+			states.unchambered_no_mag:
+				state_label.text = "unchambered_no_mag"
+			states.bolt_back_mag:
+				state_label.text = "bolt_back_mag"
+			states.bolt_back_no_mag:
+				state_label.text = "bolt_back_no_mag"
+	
+	match weaponstate:
+		states.chambered_mag:
+			#reload_transition = false
+			if Input.is_action_pressed("Shoot"):
+				shoot()
+			if current_roundcount == 0:
+				weaponstate = states.bolt_back_mag
+			if Input.is_action_just_pressed("Reload"):
+#				todo
+				pass
+		states.unchambered_mag:
+			pass
+		states.chambered_no_mag:
+			pass
+		states.unchambered_no_mag:
+			pass
+		states.bolt_back_mag:
+			if Input.is_action_just_pressed("Shoot"):
+				if current_roundcount == 0:
+					sound_manager.playsound(hammer_drop, "Sound Effects", false)
+					
+			if Input.is_action_just_pressed("Reload"):
+				reload_transition = true
+				eject_and_retain_mag()
+			if reload_transition:
+				if inserting_new_mag:
+					inserting_new_mag = false
+					
+				elif new_mag:
+					if current_roundcount != 0:
+						release_bolt()
+				else:
+					eject_and_retain_mag()
+		
+		states.bolt_back_no_mag:
+			print("bolt back no mag")
+				
+
+func release_bolt():
+	sound_manager.playsound(bolt_forward, "Sound Effects", false)
+	chambered = true
+	weaponstate = states.chambered_mag
+	new_mag = false
+	reload_transition = false
+
+func insert_new_mag():
+	sound_manager.playsound(mag_insert, "Sound Effects", true)
+	await get_tree().create_timer(1).timeout
+	current_roundcount = magazines.pop_front()
+	weaponstate = states.bolt_back_mag
+	new_mag = true
+
+func eject_and_retain_mag():
+	sound_manager.playsound(mag_eject, "Sound Effects", true)
+	magazines.append(current_roundcount)
+	weaponstate = states.bolt_back_no_mag
+	current_roundcount = 0
+	inserting_new_mag = true
+	await get_tree().create_timer(1).timeout
+	if reload_transition:
+		insert_new_mag()
+
+
+
+func pickupround():
+	if current_roundcount != 0:
+		chambered = true
+		current_roundcount -= 1
 
 func play_firing_sounds():
-	sound_manager.playsound(firing_sound, "Sound_Effects")
-	await get_tree().create_timer(randf_range(1-bullet_case_delay,1+bullet_case_delay)).timeout
-	sound_manager.playsound(bullet_case_drop_sound, "Sound_Effects")
+	sound_manager.playsound(firing_sound, "Sound Effects")
+	await get_tree().create_timer(randf_range(1-bullet_case_delay_variance,1+bullet_case_delay_variance)).timeout
+	sound_manager.playsound(bullet_case_drop_sound, "Sound Effects")
 #
 func show_muzzle_flash():
 	muzzle_flash_lighting.energy = randf_range(1, 3)
@@ -85,4 +201,5 @@ func show_muzzle_flash():
 
 
 func _on_shooting_cooldown_timeout() -> void:
-	can_shoot = true
+	pickupround()
+	shooting_cooldown.stop()

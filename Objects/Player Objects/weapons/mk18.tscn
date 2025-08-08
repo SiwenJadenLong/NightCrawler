@@ -1,9 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmneqk6ljlwu6"]
+[gd_scene load_steps=13 format=3 uid="uid://bmneqk6ljlwu6"]
 
 [ext_resource type="PackedScene" uid="uid://5rcl06f1funm" path="res://Assets/Class Objects/weapon templete.tscn" id="1_m0clk"]
-[ext_resource type="AudioStream" uid="uid://chod6k6ipsfwq" path="res://Assets/Sounds/mk18 shot.wav" id="2_w0ivl"]
-[ext_resource type="AudioStream" uid="uid://dkjmvgt1waw3n" path="res://Assets/Sounds/mk18 bullet casing drop.wav" id="3_m3aoo"]
+[ext_resource type="AudioStream" uid="uid://chod6k6ipsfwq" path="res://Assets/Sounds/mk18/mk18 shot.wav" id="2_w0ivl"]
+[ext_resource type="AudioStream" uid="uid://dkjmvgt1waw3n" path="res://Assets/Sounds/mk18/mk18 bullet casing drop.wav" id="3_m3aoo"]
+[ext_resource type="AudioStream" uid="uid://l0vijh0daxjf" path="res://Assets/Sounds/mk18/mk18 hammer down.wav" id="4_s25kv"]
 [ext_resource type="Texture2D" uid="uid://cssre7pxhilue" path="res://Assets/Lighting Textures/Muzzle Flash Light.png" id="4_s76kd"]
+[ext_resource type="AudioStream" uid="uid://c8ljuss7g0g6p" path="res://Assets/Sounds/mk18/mk18 mag eject.wav" id="4_vu8tk"]
+[ext_resource type="AudioStream" uid="uid://c04rfm3rcwds7" path="res://Assets/Sounds/mk18/mk18 mag inserted.wav" id="5_7qlun"]
+[ext_resource type="AudioStream" uid="uid://dtq84gxtixb5v" path="res://Assets/Sounds/mk18/mk18 dead trigger.wav" id="7_ru4qv"]
+[ext_resource type="AudioStream" uid="uid://dyd73eqvbqo1r" path="res://Assets/Sounds/mk18/mk18 bolt forward.wav" id="7_vvf8j"]
+[ext_resource type="AudioStream" uid="uid://bkj64wdmyufek" path="res://Assets/Sounds/mk18/mk18 bolt backward.wav" id="8_ru4qv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s76kd"]
 load_path = "res://.godot/imported/Muzzle Flash 1.png-877630213624de0095ffe5d7b63d884a.ctex"
@@ -14,11 +20,17 @@ polygon = PackedVector2Array(65, -4, 12, -4, 8, -4, -6, -4, -7, -3, -18, -3, -21
 
 [node name="weapon" instance=ExtResource("1_m0clk")]
 cyclic_rate = 800
-total_ammo = 180
-magazine_capacity = 30
+starting_mags = 4
+mag_capacity = 30
 default_left_hand_offset = Vector2(25, 30)
 firing_sound = ExtResource("2_w0ivl")
 bullet_case_drop_sound = ExtResource("3_m3aoo")
+mag_eject = ExtResource("4_vu8tk")
+mag_insert = ExtResource("5_7qlun")
+hammer_drop = ExtResource("4_s25kv")
+dead_trigger = ExtResource("7_ru4qv")
+bolt_forward = ExtResource("7_vvf8j")
+bold_backward = ExtResource("8_ru4qv")
 
 [node name="Left Hand" parent="." index="0"]
 position = Vector2(38, 0)
@@ -55,7 +67,6 @@ position = Vector2(78, 0)
 
 [node name="Shooting Cooldown" parent="." index="6"]
 wait_time = 0.001
-autostart = true
 
 [node name="LightOccluder2D" parent="." index="7"]
 visible = false

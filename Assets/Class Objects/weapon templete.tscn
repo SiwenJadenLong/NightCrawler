@@ -1,10 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://5rcl06f1funm"]
+[gd_scene load_steps=9 format=3 uid="uid://5rcl06f1funm"]
 
 [ext_resource type="PackedScene" uid="uid://bddrowep0dhh4" path="res://Assets/Class Objects/held_item.tscn" id="1_178e5"]
 [ext_resource type="Script" uid="uid://bcwkweg67de5d" path="res://Scripts/weapon.gd" id="2_7iihs"]
 [ext_resource type="Texture2D" uid="uid://dh6icrrplfkrh" path="res://Assets/Lighting Textures/Muzzle Flash 1.png" id="3_42vgq"]
 [ext_resource type="Texture2D" uid="uid://chtoeqk5jifel" path="res://Assets/Lighting Textures/Muzzle Flash 2.png.png" id="3_xwech"]
 [ext_resource type="Texture2D" uid="uid://bvfa6wd8fmxnw" path="res://Assets/Lighting Textures/Muzzle Flash 3.png" id="5_jlxht"]
+[ext_resource type="Material" uid="uid://dvd6xihwwjifk" path="res://Assets/Resources/Always Brighttres.tres" id="6_jlxht"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_42vgq"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_42vgq"]
+font_size = 30
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="weapon" instance=ExtResource("1_178e5")]
 script = ExtResource("2_7iihs")
@@ -29,5 +39,18 @@ process_callback = 0
 wait_time = 0.1
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." index="7"]
+
+[node name="debug" type="Node2D" parent="." index="8"]
+material = SubResource("CanvasItemMaterial_42vgq")
+position = Vector2(0, -123)
+
+[node name="State Label" type="Label" parent="debug" index="0"]
+material = ExtResource("6_jlxht")
+offset_left = -112.0
+offset_top = -45.0
+offset_right = -45.0
+offset_bottom = -3.0
+text = "TEST"
+label_settings = SubResource("LabelSettings_42vgq")
 
 [connection signal="timeout" from="Shooting Cooldown" to="." method="_on_shooting_cooldown_timeout"]
