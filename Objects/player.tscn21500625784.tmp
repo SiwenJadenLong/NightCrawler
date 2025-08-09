@@ -1,14 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://cw2brncu5mcfk"]
+[gd_scene load_steps=21 format=3 uid="uid://cw2brncu5mcfk"]
 
 [ext_resource type="Script" uid="uid://buxmjfl8wli1f" path="res://Scripts/player.gd" id="1_y0qk3"]
 [ext_resource type="Texture2D" uid="uid://ulorwy8n03rf" path="res://Assets/Lighting Textures/flashlight cone11.png" id="2_3y5cq"]
 [ext_resource type="Texture2D" uid="uid://bljrikmb6onar" path="res://Objects/Player Objects/Placeholder hands.tres" id="3_2i4gt"]
 [ext_resource type="Material" uid="uid://dvd6xihwwjifk" path="res://Assets/Resources/Always Brighttres.tres" id="4_0ad8t"]
 [ext_resource type="Script" uid="uid://ca3kpkp0rjy1k" path="res://Objects/magazine_display.gd" id="5_x20fu"]
-[ext_resource type="Texture2D" uid="uid://ge018bmnurta" path="res://images/UI/greymag.png" id="6_ng3n2"]
-[ext_resource type="Texture2D" uid="uid://cgk7001yf2bey" path="res://images/UI/white mag.png" id="7_f7am4"]
+[ext_resource type="PackedScene" uid="uid://j0spu0hfv8rw" path="res://Objects/UI/mag icon.tscn" id="6_slvmq"]
 [ext_resource type="FontFile" uid="uid://bv6vblpogp2mw" path="res://Assets/Resources/Kenyan Coffee Rg.otf" id="7_ng3n2"]
-[ext_resource type="Texture2D" uid="uid://c5rp168fydo4b" path="res://images/UI/v3 red mag border.png" id="8_f7am4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojbdc"]
 radius = 50.0
@@ -64,17 +62,6 @@ font = ExtResource("7_ng3n2")
 font_size = 40
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3n8j0"]
-bg_color = Color(1, 0, 0.0382776, 1)
-skew = Vector2(0.1, 0)
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-expand_margin_left = 1.0
-expand_margin_right = 2.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_y0qk3")
@@ -197,55 +184,30 @@ offset_top = -50.0
 offset_right = 85.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = -15
+theme_override_constants/separation = -10
 alignment = 1
 script = ExtResource("5_x20fu")
 
-[node name="RD Count" type="Label" parent="Player Indicators/Player Com/Magazines"]
+[node name="current_mag" parent="Player Indicators/Player Com/Magazines" instance=ExtResource("6_slvmq")]
+layout_mode = 2
+
+[node name="RD Count" type="Label" parent="Player Indicators/Player Com/Magazines/current_mag"]
 texture_filter = 1
 material = ExtResource("4_0ad8t")
-layout_mode = 2
-text = "30"
-label_settings = SubResource("LabelSettings_f7am4")
-
-[node name="current_mag" type="TextureProgressBar" parent="Player Indicators/Player Com/Magazines/RD Count"]
-show_behind_parent = true
-material = ExtResource("4_0ad8t")
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -25.0
+offset_left = -18.0
 offset_top = -25.0
-offset_right = 25.0
-offset_bottom = 25.0
+offset_right = 22.0
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-size_flags_stretch_ratio = 0.1
-value = 70.0
-fill_mode = 3
-nine_patch_stretch = true
-texture_under = ExtResource("6_ng3n2")
-texture_over = ExtResource("8_f7am4")
-texture_progress = ExtResource("7_f7am4")
-
-[node name="MarginContainer" type="MarginContainer" parent="Player Indicators/Player Com/Magazines"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 5
-
-[node name="VSeparator" type="VSeparator" parent="Player Indicators/Player Com/Magazines/MarginContainer"]
-texture_filter = 1
-material = ExtResource("4_0ad8t")
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_constants/separation = 30
-theme_override_styles/separator = SubResource("StyleBoxFlat_3n8j0")
+text = "30"
+label_settings = SubResource("LabelSettings_f7am4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.8, 0.8)
@@ -256,3 +218,5 @@ editor_draw_limits = true
 
 [node name="AudioListener2D" type="AudioListener2D" parent="Camera2D"]
 current = true
+
+[editable path="Player Indicators/Player Com/Magazines/current_mag"]

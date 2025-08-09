@@ -26,7 +26,7 @@ func _ready() -> void:
 	else: 
 		tracer.add_point(Vector2.RIGHT * 5000)
 	
-	var fade_tween = get_tree().create_tween()
+	var fade_tween = create_tween()
 	fade_tween.tween_property(self, "modulate:a", 0, tracer_timeout)
 	await fade_tween.finished
 	fade_tween.kill()

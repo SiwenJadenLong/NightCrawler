@@ -58,6 +58,8 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("Flashlight toggle"):
 #				Placeholder for placeholder flashflight
 				$Body/PointLight2D.visible = !$Body/PointLight2D.visible
+			if Input.is_action_just_pressed("check mag placeholder"):
+				SignalBus.show_magazines.emit()
 			
 		
 

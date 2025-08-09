@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://j0spu0hfv8rw"]
+
+[ext_resource type="Material" uid="uid://dvd6xihwwjifk" path="res://Assets/Resources/Always Brighttres.tres" id="1_6rjst"]
+[ext_resource type="Texture2D" uid="uid://ge018bmnurta" path="res://images/UI/greymag.png" id="2_r4rjl"]
+[ext_resource type="Texture2D" uid="uid://c5rp168fydo4b" path="res://images/UI/v3 red mag border.png" id="3_bvus7"]
+[ext_resource type="Texture2D" uid="uid://cgk7001yf2bey" path="res://images/UI/white mag.png" id="4_r03uu"]
+
+[node name="mag_icon" type="TextureProgressBar" groups=["mag_icon"]]
+material = ExtResource("1_6rjst")
+custom_minimum_size = Vector2(50, 50)
+offset_right = 200.0
+offset_bottom = 200.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+value = 70.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("2_r4rjl")
+texture_over = ExtResource("3_bvus7")
+texture_progress = ExtResource("4_r03uu")

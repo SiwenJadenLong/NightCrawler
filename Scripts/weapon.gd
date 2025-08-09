@@ -74,7 +74,8 @@ func _ready() -> void:
 		magazines.append(mag_capacity)
 #	Pops first magazine into gun
 	current_roundcount = magazines.pop_front()
-
+	SignalBus.pass_max_capacity.emit(current_roundcount)
+	SignalBus.update_magazines.emit(current_roundcount,magazines, true)
 #currently placeholder, will stop using once recoil is created
 func aim_exact_point_at_cursor():
 	look_at(get_global_mouse_position())
@@ -157,18 +158,22 @@ func release_bolt():
 	weaponstate = states.chambered_mag
 	new_mag = false
 	reload_transition = false
+	await get_tree().create_timer(0.5).timeout
+	SignalBus.hide_magazines.emit()
 
 #TODO Make reload timing adjustible via variable
 func insert_new_mag():
 	sound_manager.play_2D_sound(global_position, mag_insert,"Sound Effects", true)
 	await get_tree().create_timer(1).timeout
 	current_roundcount = magazines.pop_front()
+	SignalBus.update_magazines.emit(current_roundcount,magazines, true)
 	weaponstate = states.bolt_back_mag
 	new_mag = true
 
 func eject_and_retain_mag():
 	sound_manager.play_2D_sound(global_position, mag_eject,"Sound Effects", true)
 	magazines.append(current_roundcount)
+	SignalBus.update_magazines.emit(current_roundcount,magazines, false)
 	weaponstate = states.bolt_back_no_mag
 	current_roundcount = 0
 	inserting_new_mag = true
@@ -182,6 +187,7 @@ func pickupround():
 	if current_roundcount != 0:
 		chambered = true
 		current_roundcount -= 1
+	SignalBus.updateroundcount.emit(current_roundcount)
 
 func play_firing_sounds():
 	sound_manager.play_2D_sound(muzzle_flash.global_position, firing_sound,"Sound Effects", false)
