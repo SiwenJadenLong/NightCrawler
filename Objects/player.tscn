@@ -185,6 +185,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_0ad8t")
 
 [node name="Magazines" type="HBoxContainer" parent="Player Indicators/Player Com"]
+modulate = Color(1, 1, 1, 0)
 layout_direction = 2
 layout_mode = 1
 anchors_preset = 7
@@ -200,6 +201,8 @@ grow_vertical = 0
 theme_override_constants/separation = -15
 alignment = 1
 script = ExtResource("5_x20fu")
+
+[node name="Magazine Fade Timeout" type="Timer" parent="Player Indicators/Player Com/Magazines"]
 
 [node name="RD Count" type="Label" parent="Player Indicators/Player Com/Magazines"]
 texture_filter = 1
@@ -256,3 +259,5 @@ editor_draw_limits = true
 
 [node name="AudioListener2D" type="AudioListener2D" parent="Camera2D"]
 current = true
+
+[connection signal="timeout" from="Player Indicators/Player Com/Magazines/Magazine Fade Timeout" to="Player Indicators/Player Com/Magazines" method="_on_magazine_fade_timeout_timeout"]

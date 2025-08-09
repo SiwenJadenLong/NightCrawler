@@ -116,14 +116,13 @@ func _physics_process(_delta: float) -> void:
 	
 	match weaponstate:
 		states.chambered_mag:
-			#reload_transition = false
 			if Input.is_action_pressed("Shoot"):
 				shoot()
 			if current_roundcount == 0:
 				weaponstate = states.bolt_back_mag
 			if Input.is_action_just_pressed("Reload"):
-#				TODO make topping off reloads possible :\
-				pass
+				reload_transition = true
+				eject_and_retain_mag()
 		states.unchambered_mag:
 			pass
 		states.chambered_no_mag:
@@ -159,22 +158,31 @@ func release_bolt():
 	new_mag = false
 	reload_transition = false
 	await get_tree().create_timer(0.5).timeout
-	SignalBus.hide_magazines.emit()
 
 #TODO Make reload timing adjustible via variable
 func insert_new_mag():
 	sound_manager.play_2D_sound(global_position, mag_insert,"Sound Effects", true)
+	SignalBus.show_magazines.emit()
 	await get_tree().create_timer(1).timeout
 	current_roundcount = magazines.pop_front()
 	SignalBus.update_magazines.emit(current_roundcount,magazines, true)
-	weaponstate = states.bolt_back_mag
+	match weaponstate:
+		states.bolt_back_no_mag:
+			weaponstate = states.bolt_back_mag
+		states.chambered_no_mag:
+			weaponstate = states.chambered_mag
 	new_mag = true
 
 func eject_and_retain_mag():
+	SignalBus.show_magazines.emit()
 	sound_manager.play_2D_sound(global_position, mag_eject,"Sound Effects", true)
 	magazines.append(current_roundcount)
 	SignalBus.update_magazines.emit(current_roundcount,magazines, false)
-	weaponstate = states.bolt_back_no_mag
+	match weaponstate:
+		states.bolt_back_mag:
+			weaponstate = states.bolt_back_no_mag
+		states.chambered_mag:
+			weaponstate = states.chambered_no_mag
 	current_roundcount = 0
 	inserting_new_mag = true
 	await get_tree().create_timer(1).timeout
