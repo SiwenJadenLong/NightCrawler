@@ -4,7 +4,6 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_jjgbg")
-debugvariable = true
 
 [node name="Level Container" type="Node2D" parent="."]
 

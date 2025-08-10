@@ -11,10 +11,12 @@ var damage : float
 
 func _ready() -> void:
 #	Me when Godot says nuh uh you have to wait 2 frames for raycasts to work
-	
+#	Me when my game runs so bad I have to use 3 :sob:
+#	TODO Optimize code
 	await get_tree().physics_frame
 	await get_tree().physics_frame
-	
+	await get_tree().physics_frame
+	await get_tree().physics_frame
 	
 	tracer.width = tracer_strength
 	var collider = get_collider()

@@ -2,16 +2,18 @@ extends Node2D
 class_name weapon
 
 
+@export var BULLET : PackedScene
 
-const BULLET = preload("res://Objects/Effect Objects/bullet.tscn")
-
-var can_shoot = true
 var chambered = true
-
 var swapping_mag = false
-var inserting_new_mag = false
 var mag_in_hand : int
 var weapon_locked : bool = false
+var barrel_clipping : bool = false
+
+var double_tap_delay := 0.25
+var double_tap_time : float
+var reload_taps : int = 0
+var last_action
 
 @export_category("Stats")
 @export var weapon_damage : int = 40
@@ -34,6 +36,8 @@ var weapon_locked : bool = false
 @export_category("Cosmetics")
 @export var tracer_timeout : float = 0.25
 @export var muzzle_flash_textures : Array[Texture2D]
+@export var dropped_mag : PackedScene
+@export var bullet_casing : PackedScene
 
 @export_subgroup("Sounds")
 @export var firing_sound : AudioStream
@@ -45,6 +49,7 @@ var weapon_locked : bool = false
 @export var actual_mag_eject_time : float
 @export var mag_insert : AudioStream
 @export var actual_mag_insert_time : float
+@export var mag_drop : AudioStream
 @export var hammer_drop : AudioStream
 @export var dead_trigger : AudioStream
 @export var bolt_forward : AudioStream
@@ -59,6 +64,7 @@ var weapon_locked : bool = false
 @onready var right_hand: RemoteTransform2D = $"Right Hand"
 @onready var muzzle_flash_lighting: PointLight2D = $"Muzzle Device/muzzle flash lighting"
 @onready var muzzle_flash: PointLight2D = $"Muzzle Device/muzzle flash"
+@onready var clipping_check: Area2D = $"clipping check"
 
 enum states{
 	chambered_mag,
@@ -99,17 +105,25 @@ func shoot():
 		play_firing_sounds()
 		show_muzzle_flash()
 		var bullet = BULLET.instantiate()
-		bullet.rotation = global_rotation
 		bullet.tracer_timeout = tracer_timeout
 		bullet.damage = weapon_damage
 		bullet.initial_position = bullet_spawn.global_position
-		SignalBus.newobject.emit(bullet_spawn.global_position, bullet)
+		SignalBus.newobject.emit(bullet_spawn.global_position, bullet, global_rotation)
 		chambered = false
+		current_roundcount -= 1
 		shooting_cooldown.start(1.0/(cyclic_rate/60.0))
+		SignalBus.newobject.emit($"bullet casing spawn".global_position, bullet_casing.instantiate(), global_rotation)
 
-
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_R:
+			if last_action == event.as_text_keycode():
+				double_tap_time = 0
+			last_action = event.as_text_keycode()
 
 func _physics_process(_delta: float) -> void:
+	double_tap_time += _delta
+	
 	aim_exact_point_at_cursor()
 	
 	if GlobalVariables.debug:
@@ -131,13 +145,21 @@ func _physics_process(_delta: float) -> void:
 	if !weapon_locked:
 		match weaponstate:
 				states.chambered_mag:
-					if Input.is_action_pressed("Shoot"):
+					if Input.is_action_pressed("Shoot") and current_roundcount != 0:
 						shoot()
-					if (Input.is_action_just_pressed("Reload") 
-					and shooting_cooldown.time_left == 0 
-					and !swapping_mag):
-							eject_and_retain_mag()
-							swapping_mag = true
+					elif current_roundcount == 0:
+						weaponstate = states.bolt_back_mag
+					if ( shooting_cooldown.time_left == 0 and !swapping_mag):
+						if(Input.is_action_just_pressed("Reload")):
+							if double_tap_time < 0.25:
+								swapping_mag = true
+								last_action = null
+								eject_and_discard_mag()
+							await get_tree().create_timer(0.25).timeout
+							if !swapping_mag:
+								swapping_mag = true
+								last_action = null
+								eject_and_retain_mag()
 
 				states.unchambered_mag:
 					if Input.is_action_just_pressed("Shoot"):
@@ -145,7 +167,7 @@ func _physics_process(_delta: float) -> void:
 							sound_manager.play_2D_sound(global_position, hammer_drop,"Sound Effects", false)
 						
 				states.chambered_no_mag:
-					if Input.is_action_just_pressed("Shoot"):
+					if Input.is_action_just_pressed("Shoot") and !barrel_clipping:
 						shoot()
 						swapping_mag = false
 						weapon_locked = true
@@ -162,10 +184,19 @@ func _physics_process(_delta: float) -> void:
 				states.bolt_back_mag:
 					if Input.is_action_just_pressed("Shoot"):
 						sound_manager.play_2D_sound(global_position, hammer_drop,"Sound Effects", false)
-					if Input.is_action_just_pressed("Reload"):
-						weapon_locked = true
-						swapping_mag = true
-						eject_and_retain_mag()
+					if (!swapping_mag):
+						if(Input.is_action_just_pressed("Reload")):
+							if double_tap_time < 0.25:
+								weapon_locked = true
+								swapping_mag = true
+								last_action = null
+								eject_and_discard_mag()
+							await get_tree().create_timer(0.25).timeout
+							if !swapping_mag:
+								weapon_locked = true
+								swapping_mag = true
+								last_action = null
+								eject_and_retain_mag()
 					
 				states.bolt_back_no_mag:
 					if Input.is_action_just_pressed("Shoot"):
@@ -178,32 +209,35 @@ func pull_bolt():
 	release_bolt()
 
 func release_bolt():
-	weaponstate = states.chambered_mag
 	sound_manager.play_2D_sound(global_position, bolt_forward,"Sound Effects", false)
 	await get_tree().create_timer(actual_bolt_forward_time).timeout
-	chambered = true
+	pickupround()
+	weaponstate = states.chambered_mag
 	swapping_mag = false
 	weapon_locked = false
 
 func insert_new_mag():
 	sound_manager.play_2D_sound(global_position, mag_insert,"Sound Effects", true)
 	SignalBus.show_magazines.emit()
-	mag_in_hand = magazines.pop_front()
-	await get_tree().create_timer(actual_mag_insert_time).timeout
-	current_roundcount = mag_in_hand
-	match weaponstate:
-		states.bolt_back_no_mag:
-			weaponstate = states.bolt_back_mag
-			if current_roundcount != 0:
-				release_bolt()
-		states.chambered_no_mag:
-			weaponstate = states.chambered_mag
-		states.unchambered_no_mag:
-			weaponstate = states.unchambered_mag
-			if current_roundcount != 0:
-				pull_bolt()
-	SignalBus.update_magazines.emit(current_roundcount,magazines, true)
-	swapping_mag = false
+	if magazines:
+		mag_in_hand = magazines.pop_front()
+		await get_tree().create_timer(actual_mag_insert_time).timeout
+		current_roundcount = mag_in_hand
+		match weaponstate:
+			states.bolt_back_no_mag:
+				weaponstate = states.bolt_back_mag
+				if current_roundcount != 0:
+					release_bolt()
+			states.chambered_no_mag:
+				weaponstate = states.chambered_mag
+			states.unchambered_no_mag:
+				weaponstate = states.unchambered_mag
+				if current_roundcount != 0:
+					pull_bolt()
+				else:
+					weapon_locked = false
+		SignalBus.update_magazines.emit(current_roundcount,magazines, true)
+		swapping_mag = false
 
 func eject_and_retain_mag():
 	sound_manager.play_2D_sound(global_position, mag_eject,"Sound Effects", true)
@@ -221,13 +255,35 @@ func eject_and_retain_mag():
 	if swapping_mag:
 		insert_new_mag()
 
+func eject_and_discard_mag():
+	drop_mag()
+	match weaponstate:
+		states.bolt_back_mag:
+			weaponstate = states.bolt_back_no_mag
+		states.chambered_mag:
+			weaponstate = states.chambered_no_mag
+	SignalBus.show_magazines.emit()
+	current_roundcount = 0
+	SignalBus.update_magazines.emit(current_roundcount,magazines, false)
+	#await get_tree().create_timer(0.25).timeout
+	weapon_locked = false
+	if swapping_mag:
+		insert_new_mag()
+		
+
+
+func drop_mag():
+	sound_manager.play_2D_sound(global_position, mag_eject,"Sound Effects", true)
+	var new_dropped_mag = dropped_mag.instantiate()
+	SignalBus.newobject.emit(global_position, new_dropped_mag, randf_range(0, 2*PI))
+	await get_tree().create_timer(0.25)
+	sound_manager.play_2D_sound(global_position, mag_drop,"Sound Effects", true)
 
 func pickupround():
 	if current_roundcount != 0:
 		chambered = true
-		current_roundcount -= 1
 	else:
-		chambered = false
+		chambered = true
 	SignalBus.updateroundcount.emit(current_roundcount)
 
 func play_firing_sounds():
@@ -254,3 +310,13 @@ func show_muzzle_flash():
 func _on_shooting_cooldown_timeout() -> void:
 	pickupround()
 	shooting_cooldown.stop()
+
+
+#func _on_clipping_check_body_entered(body: Node2D) -> void:
+	#print(clipping_check.get_overlapping_bodies())
+	##for clippedbody in clipping_check.get_overlapping_bodies():
+		##if clippedbody is not player:
+			##barrel_clipping = true
+			##return
+#func _on_clipping_check_body_exited(body: Node2D) -> void:
+	#barrel_clipping = false

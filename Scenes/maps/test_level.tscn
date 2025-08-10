@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bdyod6chq6q4" path="res://Scenes/maps/map.gd" id="1_qp5y0"]
 [ext_resource type="Texture2D" uid="uid://djxgfrjk4fpgt" path="res://images/20250627_022632.jpg" id="1_x8avq"]
-[ext_resource type="PackedScene" uid="uid://cw2brncu5mcfk" path="res://Objects/player.tscn" id="2_qp5y0"]
+[ext_resource type="PackedScene" uid="uid://cw2brncu5mcfk" path="res://Objects/Player Objects/player.tscn" id="2_qp5y0"]
 [ext_resource type="PackedScene" uid="uid://5os4sx1et47m" path="res://Objects/levelobjects/target.tscn" id="4_f3cnq"]
 [ext_resource type="PackedScene" uid="uid://bpdkwxngy8gr6" path="res://Objects/levelobjects/wall.tscn" id="4_slvdh"]
 [ext_resource type="PackedScene" uid="uid://c0gu5kk41jnjf" path="res://Objects/levelobjects/flood_light.tscn" id="5_1q41e"]
@@ -17,7 +17,6 @@ texture = ExtResource("1_x8avq")
 [node name="Player" parent="." instance=ExtResource("2_qp5y0")]
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-visible = false
 position = Vector2(0, 5)
 blend_mode = 1
 

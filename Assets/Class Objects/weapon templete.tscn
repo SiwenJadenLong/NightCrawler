@@ -53,4 +53,10 @@ offset_bottom = -3.0
 text = "TEST"
 label_settings = SubResource("LabelSettings_42vgq")
 
+[node name="clipping check" type="Area2D" parent="." index="9"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="clipping check" index="0"]
+
+[node name="bullet casing spawn" type="Marker2D" parent="." index="10"]
+
 [connection signal="timeout" from="Shooting Cooldown" to="." method="_on_shooting_cooldown_timeout"]

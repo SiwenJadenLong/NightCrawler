@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name player
 
 @onready var Camera: Camera2D = $Camera2D
 @onready var Body: Node2D = $Body
@@ -38,7 +38,6 @@ func give_loadout() -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	delta_time = delta
 	if GlobalVariables.debug:
 		match playerstate:
 			states.alive:

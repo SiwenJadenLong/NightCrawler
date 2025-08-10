@@ -52,7 +52,7 @@ func fade_away():
 
 func fade_in():
 	if GlobalVariables.debug:
-		magazine_fade_timeout.start(99999)
+		magazine_fade_timeout.start(1)
 	else:
 		magazine_fade_timeout.start(2.5)
 	var fade_tween = create_tween()
