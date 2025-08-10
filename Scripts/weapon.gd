@@ -287,7 +287,7 @@ func pickupround():
 	SignalBus.updateroundcount.emit(current_roundcount)
 
 func play_firing_sounds():
-	sound_manager.play_2D_sound(muzzle_flash.global_position, firing_sound,"Sound Effects", false)
+	sound_manager.play_2D_sound(muzzle_flash.global_position, firing_sound,"Sound Effects", randf_range(0.98,1.02))
 	await get_tree().create_timer(randf_range(1-bullet_case_delay_variance,1+bullet_case_delay_variance)).timeout
 	sound_manager.playsound(bullet_case_drop_sound, "Sound Effects")
 #

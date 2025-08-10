@@ -1,7 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://bmneqk6ljlwu6"]
 
 [ext_resource type="PackedScene" uid="uid://5rcl06f1funm" path="res://Assets/Class Objects/weapon templete.tscn" id="1_m0clk"]
-[ext_resource type="AudioStream" uid="uid://chod6k6ipsfwq" path="res://Assets/Sounds/mk18/mk18 shot.wav" id="2_w0ivl"]
 [ext_resource type="PackedScene" uid="uid://bgesilm6dvxpt" path="res://Objects/Effect Objects/bullet.tscn" id="2_y5bnn"]
 [ext_resource type="AudioStream" uid="uid://dkjmvgt1waw3n" path="res://Assets/Sounds/mk18/mk18 bullet casing drop.wav" id="3_m3aoo"]
 [ext_resource type="PackedScene" uid="uid://dipc1eh6gg1bg" path="res://Objects/levelobjects/dropped_mag.tscn" id="3_y5bnn"]
@@ -10,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cssre7pxhilue" path="res://Assets/Lighting Textures/Muzzle Flash Light.png" id="4_s76kd"]
 [ext_resource type="AudioStream" uid="uid://c8ljuss7g0g6p" path="res://Assets/Sounds/mk18/mk18 mag eject.wav" id="4_vu8tk"]
 [ext_resource type="AudioStream" uid="uid://c04rfm3rcwds7" path="res://Assets/Sounds/mk18/mk18 mag inserted.wav" id="5_7qlun"]
+[ext_resource type="AudioStream" uid="uid://bgosjm5l1414t" path="res://Assets/Sounds/mk18/ar-15 gunshot2.wav" id="5_8tq6r"]
 [ext_resource type="AudioStream" uid="uid://dtq84gxtixb5v" path="res://Assets/Sounds/mk18/mk18 dead trigger.wav" id="7_ru4qv"]
 [ext_resource type="AudioStream" uid="uid://dyd73eqvbqo1r" path="res://Assets/Sounds/mk18/mk18 bolt forward.wav" id="7_vvf8j"]
 [ext_resource type="AudioStream" uid="uid://ce1wyg8x32sba" path="res://Assets/Sounds/hk usp 9mm/9mm mag drop.wav" id="7_w6dr4"]
@@ -35,7 +35,7 @@ mag_swap_time = 1.0
 default_left_hand_offset = Vector2(25, 30)
 dropped_mag = ExtResource("3_y5bnn")
 bullet_casing = ExtResource("4_8tq6r")
-firing_sound = ExtResource("2_w0ivl")
+firing_sound = ExtResource("5_8tq6r")
 bullet_case_drop_sound = ExtResource("3_m3aoo")
 mag_eject = ExtResource("4_vu8tk")
 actual_mag_eject_time = 0.2

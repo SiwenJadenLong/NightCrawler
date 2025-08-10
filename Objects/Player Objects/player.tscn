@@ -1,34 +1,17 @@
-[gd_scene load_steps=24 format=3 uid="uid://cw2brncu5mcfk"]
+[gd_scene load_steps=21 format=3 uid="uid://cw2brncu5mcfk"]
 
 [ext_resource type="Script" uid="uid://buxmjfl8wli1f" path="res://Scripts/player.gd" id="1_y0qk3"]
 [ext_resource type="Texture2D" uid="uid://ulorwy8n03rf" path="res://Assets/Lighting Textures/flashlight cone11.png" id="2_3y5cq"]
+[ext_resource type="Texture2D" uid="uid://63xu3xwmp3ov" path="res://images/Player/playerbody.png" id="2_5cy28"]
 [ext_resource type="Texture2D" uid="uid://bljrikmb6onar" path="res://Objects/Player Objects/Placeholder hands.tres" id="3_2i4gt"]
 [ext_resource type="Material" uid="uid://dvd6xihwwjifk" path="res://Assets/Resources/Always Brighttres.tres" id="4_0ad8t"]
+[ext_resource type="OccluderPolygon2D" uid="uid://c50yw4bm4iy2o" path="res://Resources/body Occluder.tres" id="4_h8u6p"]
+[ext_resource type="Texture2D" uid="uid://dqxply05j7q63" path="res://images/Player/head.png" id="5_h8u6p"]
 [ext_resource type="Script" uid="uid://ca3kpkp0rjy1k" path="res://Objects/magazine_display.gd" id="5_x20fu"]
 [ext_resource type="Texture2D" uid="uid://ge018bmnurta" path="res://images/UI/greymag.png" id="6_ng3n2"]
 [ext_resource type="Texture2D" uid="uid://cgk7001yf2bey" path="res://images/UI/white mag.png" id="7_f7am4"]
 [ext_resource type="FontFile" uid="uid://bv6vblpogp2mw" path="res://Assets/Resources/Kenyan Coffee Rg.otf" id="7_ng3n2"]
 [ext_resource type="Texture2D" uid="uid://c5rp168fydo4b" path="res://images/UI/v3 red mag border.png" id="8_f7am4"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ojbdc"]
-radius = 50.0
-
-[sub_resource type="Gradient" id="Gradient_y0qk3"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.714286)
-colors = PackedColorArray(0, 0, 1, 1, 0, 0, 1, 0)
-metadata/_snap_count = 2
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3y5cq"]
-gradient = SubResource("Gradient_y0qk3")
-width = 100
-height = 100
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2i4gt"]
-cull_mode = 1
-polygon = PackedVector2Array(24, -45.6, 16, -49, -10, -50, -30.5, -41, -45.3, -24, -50, -7.4, -50, 7.6, -41, 30.6, -19, 48, 17, 48, 40.1, 32, 50, 7.1, 48, -16.9, 41, -30.5)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0ad8t"]
 polygon = PackedVector2Array(4.1, -10, -4.1, -10, -4.1, -9.1, -6.1, -9.1, -6.1, -8.1, -7.1, -8.1, -7.1, -7.1, -8.1, -7.1, -8.1, -6.1, -9.1, -6.1, -9.1, -4.1, -10, -4.1, -10, 4.1, -9.1, 4.1, -9.1, 6.1, -8.1, 6.1, -8.1, 7.1, -7.1, 7.1, -7.1, 8.1, -6.1, 8.1, -6.1, 9.1, -4.1, 9.1, -4.1, 10, 4.1, 10, 4.1, 9.1, 6.1, 9.1, 6.1, 8.1, 7.1, 8.1, 7.1, 7.1, 8.1, 7.1, 8.1, 6.1, 9.1, 6.1, 9.1, 4.1, 10, 4.1, 10, -4.1, 9.1, -4.1, 9.1, -6.1, 8.1, -6.1, 8.1, -7.1, 7.1, -7.1, 7.1, -8.1, 6.1, -8.1, 6.1, -9.1, 4.1, -9.1)
@@ -36,19 +19,9 @@ polygon = PackedVector2Array(4.1, -10, -4.1, -10, -4.1, -9.1, -6.1, -9.1, -6.1, 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0ar0x"]
 polygon = PackedVector2Array(4.1, -10, -4.1, -10, -4.1, -9.1, -6.1, -9.1, -6.1, -8.1, -7.1, -8.1, -7.1, -7.1, -8.1, -7.1, -8.1, -6.1, -9.1, -6.1, -9.1, -4.1, -10, -4.1, -10, 4.1, -9.1, 4.1, -9.1, 6.1, -8.1, 6.1, -8.1, 7.1, -7.1, 7.1, -7.1, 8.1, -6.1, 8.1, -6.1, 9.1, -4.1, 9.1, -4.1, 10, 4.1, 10, 4.1, 9.1, 6.1, 9.1, 6.1, 8.1, 7.1, 8.1, 7.1, 7.1, 8.1, 7.1, 8.1, 6.1, 9.1, 6.1, 9.1, 4.1, 10, 4.1, 10, -4.1, 9.1, -4.1, 9.1, -6.1, 8.1, -6.1, 8.1, -7.1, 7.1, -7.1, 7.1, -8.1, 6.1, -8.1, 6.1, -9.1, 4.1, -9.1)
 
-[sub_resource type="Gradient" id="Gradient_2i4gt"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.409091)
-colors = PackedColorArray(0.898438, 1, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ad8t"]
-gradient = SubResource("Gradient_2i4gt")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_x20fu"]
 cull_mode = 1
-polygon = PackedVector2Array(-5.1, -18.1, -8.1, -17.1, -10.1, -16.1, -16.1, -10.1, -17.1, -8.1, -18.1, -5.1, -18.1, 5.1, -17.1, 8.1, -16.1, 10.1, -10.1, 16.1, -8.1, 17.1, -5.1, 18.1, 5.1, 18.1, 8.1, 17.1, 10, 16, 16.1, 10.1, 17.1, 8.1, 18.1, 5.1, 18.1, -5.1, 17.1, -8.1, 16.1, -10.1, 10.1, -16.1, 8.1, -17.1, 5.1, -18.1)
+polygon = PackedVector2Array(-5.1, -18.1, -10.1, -16.1, -16, -10, -18.1, -5.1, -18.1, 5.1, -16, 9, -12, 14, -5.1, 18.1, 5.1, 18.1, 13, 14, 18, 7, 18, -4, 15, -12, 10.1, -16.1, 5.1, -18.1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2i4gt"]
 font_size = 50
@@ -79,32 +52,10 @@ expand_margin_right = 2.0
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_y0qk3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ojbdc")
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(16, -45, 29, -37, 18, -16, 21, -9, 14, 19, 9, 23, 2, 44, -4, 49, -15, 44, -17, 14, -22, 9, -12, -23, -4, -25)
 
 [node name="Legs" type="Node2D" parent="."]
-
-[node name="Body" type="Node2D" parent="."]
-
-[node name="body" type="Sprite2D" parent="Body"]
-texture_filter = 1
-texture = SubResource("GradientTexture2D_3y5cq")
-
-[node name="PointLight2D" type="PointLight2D" parent="Body"]
-light_mask = 7
-position = Vector2(50, 0)
-scale = Vector2(2, 4)
-energy = 1.5
-shadow_enabled = true
-shadow_filter = 1
-shadow_filter_smooth = 1.0
-shadow_item_cull_mask = 3
-texture = ExtResource("2_3y5cq")
-offset = Vector2(1000, 0)
-
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="Body"]
-occluder = SubResource("OccluderPolygon2D_2i4gt")
-occluder_light_mask = 3
 
 [node name="Hands" type="Node2D" parent="."]
 
@@ -126,10 +77,32 @@ occluder = SubResource("OccluderPolygon2D_0ar0x")
 
 [node name="Held Item" type="Node2D" parent="."]
 
+[node name="Body" type="Node2D" parent="."]
+
+[node name="body" type="Sprite2D" parent="Body"]
+texture_filter = 1
+texture = ExtResource("2_5cy28")
+
+[node name="PointLight2D" type="PointLight2D" parent="Body"]
+light_mask = 7
+position = Vector2(50, 0)
+scale = Vector2(2, 4)
+energy = 1.5
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+shadow_item_cull_mask = 3
+texture = ExtResource("2_3y5cq")
+offset = Vector2(1000, 0)
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Body"]
+occluder = ExtResource("4_h8u6p")
+occluder_light_mask = 3
+
 [node name="Head" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Head"]
-texture = SubResource("GradientTexture2D_0ad8t")
+texture = ExtResource("5_h8u6p")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Head"]
 occluder = SubResource("OccluderPolygon2D_x20fu")
@@ -176,10 +149,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -125.0
-offset_top = -125.0
-offset_right = 125.0
-offset_bottom = 125.0
+offset_left = -101.0
+offset_top = -109.0
+offset_right = 149.0
+offset_bottom = 141.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_0ad8t")

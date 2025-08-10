@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bs6ciy0f0tex2"
+path="res://.godot/imported/ar-15 gunshot 1.wav-33ae3a59a560907ea2d1b9876093c6ff.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/mk18/ar-15 gunshot 1.wav"
+dest_files=["res://.godot/imported/ar-15 gunshot 1.wav-33ae3a59a560907ea2d1b9876093c6ff.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

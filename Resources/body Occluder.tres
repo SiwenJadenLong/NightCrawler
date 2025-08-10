@@ -1,0 +1,5 @@
+[gd_resource type="OccluderPolygon2D" format=3 uid="uid://c50yw4bm4iy2o"]
+
+[resource]
+cull_mode = 1
+polygon = PackedVector2Array(22, -42, 16, -45, -4, -25, -11, -23, -23, 9, -17, 15, -15, 45, -4, 48, 2, 44, 9, 23, 18, 11, 21, -9, 18, -16, 29, -37)

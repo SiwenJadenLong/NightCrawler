@@ -7,10 +7,11 @@ class_name player
 @onready var held_item: Node2D = $"Held Item"
 @onready var left_hand: Sprite2D = $"Hands/Left Hand"
 @onready var right_hand: Sprite2D = $"Hands/Right Hand"
+@onready var head: Node2D = $Head
 
 
 var cameralocked : bool = true
-const SPEED = 300.0
+const SPEED = 200
 
 enum states{
 	alive,
@@ -84,6 +85,7 @@ func set_hands_to_item():
 
 func turn_to_cursor():
 	Body.rotation = get_angle_to(get_global_mouse_position())
+	head.rotation = get_angle_to(get_global_mouse_position())
 	held_item.global_rotation = get_angle_to(get_global_mouse_position())
 	
 func camera_view_ahead():

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgu1dkyh0gcxl"
-path="res://.godot/imported/red mag border.png-933d258ec3481ab21c92837908ae2b5b.ctex"
+uid="uid://63xu3xwmp3ov"
+path="res://.godot/imported/playerbody.png-27ea91f2f99cce16d99f6103cab2df30.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/UI/red mag border.png"
-dest_files=["res://.godot/imported/red mag border.png-933d258ec3481ab21c92837908ae2b5b.ctex"]
+source_file="res://images/Player/playerbody.png"
+dest_files=["res://.godot/imported/playerbody.png-27ea91f2f99cce16d99f6103cab2df30.ctex"]
 
 [params]
 
