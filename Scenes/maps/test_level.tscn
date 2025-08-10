@@ -17,6 +17,7 @@ texture = ExtResource("1_x8avq")
 [node name="Player" parent="." instance=ExtResource("2_qp5y0")]
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
 position = Vector2(0, 5)
 blend_mode = 1
 

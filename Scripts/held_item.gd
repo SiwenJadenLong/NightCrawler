@@ -1,4 +1,4 @@
-extends 
+extends Node
 
 @onready var item_held_sprite: Sprite2D = $"item held sprite"
 

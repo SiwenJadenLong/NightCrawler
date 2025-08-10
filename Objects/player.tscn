@@ -203,6 +203,7 @@ alignment = 1
 script = ExtResource("5_x20fu")
 
 [node name="Magazine Fade Timeout" type="Timer" parent="Player Indicators/Player Com/Magazines"]
+wait_time = 1e+07
 
 [node name="RD Count" type="Label" parent="Player Indicators/Player Com/Magazines"]
 texture_filter = 1

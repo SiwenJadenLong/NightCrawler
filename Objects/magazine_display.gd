@@ -51,7 +51,10 @@ func fade_away():
 	fade_tween.kill()
 
 func fade_in():
-	magazine_fade_timeout.start(2.5)
+	if GlobalVariables.debug:
+		magazine_fade_timeout.start(99999)
+	else:
+		magazine_fade_timeout.start(2.5)
 	var fade_tween = create_tween()
 	fade_tween.tween_property(self, "modulate:a", 1, 0.5).set_ease(Tween.EASE_IN)
 	await fade_tween.finished

@@ -18,6 +18,7 @@ enum states{
 	interacting,
 	reloading
 }
+var delta_time : float
 
 var playerstate : states = states.alive
 
@@ -37,6 +38,7 @@ func give_loadout() -> void:
 	
 
 func _physics_process(delta: float) -> void:
+	delta_time = delta
 	if GlobalVariables.debug:
 		match playerstate:
 			states.alive:
@@ -59,6 +61,7 @@ func _physics_process(delta: float) -> void:
 #				Placeholder for placeholder flashflight
 				$Body/PointLight2D.visible = !$Body/PointLight2D.visible
 			if Input.is_action_just_pressed("check mag placeholder"):
+#				Placeholder show magazines for a couple seconds
 				SignalBus.show_magazines.emit()
 			
 		

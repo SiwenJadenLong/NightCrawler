@@ -29,4 +29,4 @@ func load_new_map(map_name) -> void:
 func _ready() -> void:
 	GlobalVariables.debug = debugvariable
 	load_new_map("test_level")
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
+	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
