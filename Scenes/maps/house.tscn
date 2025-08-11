@@ -1,0 +1,202 @@
+[gd_scene load_steps=7 format=3 uid="uid://kudyuhfbher5"]
+
+[ext_resource type="PackedScene" uid="uid://dxfsohl41n0p6" path="res://Scenes/maps/level_templete.tscn" id="1_k0ybj"]
+[ext_resource type="Texture2D" uid="uid://c554ma68gwrot" path="res://images/Level Object Images/asphalt.jpg" id="2_vwyac"]
+[ext_resource type="PackedScene" uid="uid://bpdkwxngy8gr6" path="res://Objects/levelobjects/wall.tscn" id="3_gnses"]
+[ext_resource type="PackedScene" uid="uid://dk3hffpnm42rp" path="res://Objects/levelobjects/generic_enemy.tscn" id="4_gnses"]
+[ext_resource type="AudioStream" uid="uid://ba4k3awbb1mh3" path="res://Assets/Music/Thank You, Come Again (Gas).mp3" id="5_a47c6"]
+[ext_resource type="PackedScene" uid="uid://c0gu5kk41jnjf" path="res://Objects/levelobjects/flood_light.tscn" id="5_dso76"]
+
+[node name="level_templete" instance=ExtResource("1_k0ybj")]
+
+[node name="TextureRect" type="TextureRect" parent="." index="0"]
+texture_filter = 1
+offset_right = 10000.0
+offset_bottom = 10000.0
+texture = ExtResource("2_vwyac")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Ground" parent="." index="1"]
+metadata/_edit_lock_ = true
+
+[node name="wall_place" parent="Terrain" index="1" instance=ExtResource("3_gnses")]
+position = Vector2(3485, 7891)
+rotation = -1.57079
+scale = Vector2(1.42271, 1)
+
+[node name="wall_place11" parent="Terrain" index="2" instance=ExtResource("3_gnses")]
+position = Vector2(3488, 6736)
+rotation = -1.57079
+scale = Vector2(1.42271, 1)
+
+[node name="wall_place12" parent="Terrain" index="3" instance=ExtResource("3_gnses")]
+position = Vector2(3818, 6401)
+rotation = -3.14159
+scale = Vector2(1.42271, 1)
+
+[node name="wall_place13" parent="Terrain" index="4" instance=ExtResource("3_gnses")]
+position = Vector2(4160, 6660)
+rotation = -4.71238
+scale = Vector2(1.14271, 1)
+
+[node name="wall_place15" parent="Terrain" index="5" instance=ExtResource("3_gnses")]
+position = Vector2(4319, 6763)
+rotation = -6.28318
+scale = Vector2(0.702703, 1)
+
+[node name="wall_place16" parent="Terrain" index="6" instance=ExtResource("3_gnses")]
+position = Vector2(4830, 6766)
+rotation = -6.28318
+scale = Vector2(0.702703, 1)
+
+[node name="wall_place17" parent="Terrain" index="7" instance=ExtResource("3_gnses")]
+position = Vector2(4988, 7597)
+rotation = -7.85397
+scale = Vector2(0.902708, 1)
+
+[node name="wall_place22" parent="Terrain" index="8" instance=ExtResource("3_gnses")]
+position = Vector2(4988, 6977)
+rotation = -7.85397
+scale = Vector2(0.902708, 1)
+
+[node name="wall_place24" parent="Terrain" index="9" instance=ExtResource("3_gnses")]
+position = Vector2(5185, 6560)
+rotation = -9.42476
+scale = Vector2(0.902708, 1)
+
+[node name="wall_place28" parent="Terrain" index="10" instance=ExtResource("3_gnses")]
+position = Vector2(5536, 6697)
+rotation = -11.781
+scale = Vector2(0.902708, 1)
+
+[node name="wall_place29" parent="Terrain" index="11" instance=ExtResource("3_gnses")]
+position = Vector2(5492, 6863)
+rotation = -12.5664
+scale = Vector2(0.902708, 1)
+
+[node name="wall_place14" parent="Terrain" index="12" instance=ExtResource("3_gnses")]
+position = Vector2(4160, 7160)
+rotation = -4.71238
+scale = Vector2(0.377621, 0.788463)
+
+[node name="wall_place23" parent="Terrain" index="13" instance=ExtResource("3_gnses")]
+position = Vector2(4982, 6669)
+rotation = -4.71238
+scale = Vector2(0.377621, 0.788463)
+
+[node name="wall_place6" parent="Terrain" index="14" instance=ExtResource("3_gnses")]
+position = Vector2(3619, 7543)
+rotation = -3.14159
+scale = Vector2(0.622708, 1)
+
+[node name="wall_place7" parent="Terrain" index="15" instance=ExtResource("3_gnses")]
+position = Vector2(3484, 7390)
+rotation = -1.57079
+scale = Vector2(0.622708, 1)
+
+[node name="wall_place8" parent="Terrain" index="16" instance=ExtResource("3_gnses")]
+position = Vector2(3670, 7257)
+scale = Vector2(0.862708, 1)
+
+[node name="wall_place9" parent="Terrain" index="17" instance=ExtResource("3_gnses")]
+position = Vector2(4280, 7257)
+scale = Vector2(0.862708, 1)
+
+[node name="wall_place18" parent="Terrain" index="18" instance=ExtResource("3_gnses")]
+position = Vector2(4370, 7540)
+scale = Vector2(0.862708, 1)
+
+[node name="wall_place19" parent="Terrain" index="19" instance=ExtResource("3_gnses")]
+position = Vector2(4563, 8217)
+rotation = -1.57079
+scale = Vector2(0.862708, 1)
+
+[node name="wall_place20" parent="Terrain" index="20" instance=ExtResource("3_gnses")]
+position = Vector2(4980, 8021)
+rotation = -3.14159
+scale = Vector2(1.74271, 1)
+
+[node name="wall_place21" parent="Terrain" index="21" instance=ExtResource("3_gnses")]
+position = Vector2(5398, 7779)
+rotation = -4.71238
+scale = Vector2(1.04611, 1.00002)
+
+[node name="wall_place2" parent="Terrain" index="22" instance=ExtResource("3_gnses")]
+position = Vector2(3761, 8335)
+rotation = -1.57079
+scale = Vector2(0.404409, 1)
+
+[node name="wall_place4" parent="Terrain" index="23" instance=ExtResource("3_gnses")]
+position = Vector2(4160, 8416)
+scale = Vector2(1.68441, 1)
+
+[node name="wall_place5" parent="Terrain" index="24" instance=ExtResource("3_gnses")]
+position = Vector2(4160, 7860)
+rotation = -1.57079
+scale = Vector2(1.32441, 1)
+
+[node name="wall_place27" parent="Terrain" index="25" instance=ExtResource("3_gnses")]
+position = Vector2(5633, 7326)
+rotation = -1.57079
+scale = Vector2(0.924429, 1)
+
+[node name="wall_place3" parent="Terrain" index="26" instance=ExtResource("3_gnses")]
+position = Vector2(5068, 6868)
+rotation = -3.14159
+scale = Vector2(0.404409, 1)
+
+[node name="wall_place25" parent="Terrain" index="27" instance=ExtResource("3_gnses")]
+position = Vector2(5074, 7540)
+rotation = -3.14159
+scale = Vector2(0.404409, 1)
+
+[node name="wall_place26" parent="Terrain" index="28" instance=ExtResource("3_gnses")]
+position = Vector2(5516, 7540)
+rotation = -3.14159
+scale = Vector2(0.404409, 1)
+
+[node name="wall_place10" parent="Terrain" index="29" instance=ExtResource("3_gnses")]
+position = Vector2(4028, 7545)
+rotation = -3.14159
+scale = Vector2(0.564409, 1)
+
+[node name="Player" parent="Player" index="0"]
+position = Vector2(3919, 8662)
+metadata/_edit_lock_ = true
+
+[node name="generic enemy" parent="enemies" index="0" instance=ExtResource("4_gnses")]
+position = Vector2(3869, 8320)
+rotation = -1.83259
+
+[node name="generic enemy2" parent="enemies" index="1" instance=ExtResource("4_gnses")]
+position = Vector2(3557, 7472)
+rotation = -6.28318
+
+[node name="generic enemy3" parent="enemies" index="2" instance=ExtResource("4_gnses")]
+position = Vector2(4280, 8049)
+rotation = -4.71238
+
+[node name="generic enemy4" parent="enemies" index="3" instance=ExtResource("4_gnses")]
+position = Vector2(5096, 7658)
+rotation = -4.71238
+
+[node name="generic enemy5" parent="enemies" index="4" instance=ExtResource("4_gnses")]
+position = Vector2(4068, 6872)
+rotation = -4.71238
+
+[node name="generic enemy6" parent="enemies" index="5" instance=ExtResource("4_gnses")]
+position = Vector2(5069, 6791)
+rotation = -6.28318
+
+[node name="generic enemy7" parent="enemies" index="6" instance=ExtResource("4_gnses")]
+position = Vector2(5539, 7440)
+rotation = -3.40339
+
+[node name="FloodLight" parent="Spawn Objects" index="0" instance=ExtResource("5_dso76")]
+position = Vector2(3963, 7933)
+rotation = 2.35619
+
+[node name="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource("5_a47c6")
+autoplay = true

@@ -13,7 +13,9 @@ func _ready() -> void:
 	load_new_map("main_menu")
 	SignalBus.load_level.connect(load_new_map)
 	SignalBus.player_death.connect(death)
+	SignalBus.win.connect(win)
 	GlobalVariables.debug = debugvariable
+	
 
 func unload_level() -> void:
 	if (is_instance_valid(level_instance)):
@@ -36,4 +38,10 @@ func load_new_map(map_name) -> void:
 
 func death():
 	unload_level()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	death_screen.show()
+
+func win():
+	unload_level()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	$"screen effects/Popups/Win".show()

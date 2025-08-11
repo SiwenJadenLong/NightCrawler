@@ -17,6 +17,8 @@ script = ExtResource("1_xma3c")
 
 [node name="Player" parent="Player" instance=ExtResource("2_5f2jb")]
 
+[node name="enemies" type="Node2D" parent="."]
+
 [node name="Spawn Objects" type="Node2D" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

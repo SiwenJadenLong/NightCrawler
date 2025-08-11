@@ -20,6 +20,7 @@ func _ready() -> void:
 	
 	tracer.width = tracer_strength
 	var collider = get_collider()
+	print(collider)
 	if collider:
 		var variable = (global_position - get_collision_point()).length()
 		tracer.add_point(Vector2(variable,0))

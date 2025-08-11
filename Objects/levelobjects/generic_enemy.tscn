@@ -1,17 +1,37 @@
-[gd_scene load_steps=7 format=3 uid="uid://dk3hffpnm42rp"]
+[gd_scene load_steps=18 format=3 uid="uid://dk3hffpnm42rp"]
 
 [ext_resource type="Script" uid="uid://dfcci7dc4qs43" path="res://generic_enemy.gd" id="1_bfbba"]
+[ext_resource type="PackedScene" uid="uid://bgesilm6dvxpt" path="res://Objects/Effect Objects/bullet.tscn" id="2_wws07"]
 [ext_resource type="Texture2D" uid="uid://b1l00etgoq85g" path="res://images/Enemy/enemy body.png" id="2_xh6mb"]
+[ext_resource type="PackedScene" uid="uid://6sl754nlsgx4" path="res://Objects/Effect Objects/bullet_casing.tscn" id="3_l33wf"]
 [ext_resource type="OccluderPolygon2D" uid="uid://c50yw4bm4iy2o" path="res://Resources/body Occluder.tres" id="3_oif6e"]
 [ext_resource type="Texture2D" uid="uid://bftvdlmmcihlg" path="res://images/Enemy/enemy head.png" id="4_275og"]
 [ext_resource type="Texture2D" uid="uid://44usk2k0ete4" path="res://images/Player/hands.png" id="4_oif6e"]
+[ext_resource type="Texture2D" uid="uid://dh6icrrplfkrh" path="res://Assets/Lighting Textures/Muzzle Flash 1.png" id="4_s13sf"]
+[ext_resource type="PackedScene" uid="uid://dv1u6x0p853v4" path="res://Objects/weapon objects/pistol.tscn" id="5_275og"]
+[ext_resource type="Texture2D" uid="uid://chtoeqk5jifel" path="res://Assets/Lighting Textures/Muzzle Flash 2.png.png" id="5_n0ua6"]
+[ext_resource type="Texture2D" uid="uid://bvfa6wd8fmxnw" path="res://Assets/Lighting Textures/Muzzle Flash 3.png" id="6_pxrif"]
+[ext_resource type="Texture2D" uid="uid://cssre7pxhilue" path="res://Assets/Lighting Textures/Muzzle Flash Light.png" id="6_rvgh8"]
+[ext_resource type="AudioStream" uid="uid://7rw3tv0vyu7f" path="res://Assets/Sounds/glock/glock shot.wav" id="7_ajdgk"]
+[ext_resource type="AudioStream" uid="uid://cygag5m6kfk1v" path="res://Assets/Sounds/Object sounds/steel hit.wav" id="8_l33wf"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wlarr"]
+load_path = "res://.godot/imported/Muzzle Flash 1.png-877630213624de0095ffe5d7b63d884a.ctex"
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rvgh8"]
 cull_mode = 1
 polygon = PackedVector2Array(-5, -20, -10, -20, -16, -10, -18.1, -5.1, -18.1, 5.1, -16, 9, -12, 14, -10, 19, 7, 19, 13, 14, 18, 7, 18, -4, 15, -12, 10.1, -16.1, 7, -20)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_oif6e"]
+radius = 80.0
+
 [node name="generic enemy" type="CharacterBody2D"]
 script = ExtResource("1_bfbba")
+BULLET = ExtResource("2_wws07")
+bullet_casing = ExtResource("3_l33wf")
+muzzle_flash_textures = Array[Texture2D]([ExtResource("4_s13sf"), ExtResource("5_n0ua6"), ExtResource("6_pxrif")])
+firing_sound = ExtResource("7_ajdgk")
+hit_sound = ExtResource("8_l33wf")
 
 [node name="Collision Polygon" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(16, -45, 29, -37, 18, -16, 21, -9, 14, 19, 9, 23, 6, 22, 2, 44, -4, 49, -15, 44, -17, 14, -22, 9, -12, -23, -4, -25)
@@ -39,7 +59,25 @@ modulate = Color(0.368627, 1, 0.317647, 1)
 position = Vector2(60, 36)
 texture = ExtResource("4_oif6e")
 
-[node name="Held Gun" type="Node2D" parent="."]
+[node name="held item" type="Node2D" parent="."]
+position = Vector2(65, 12)
+
+[node name="pistol" parent="held item" instance=ExtResource("5_275og")]
+
+[node name="muzzle flash lighting" type="PointLight2D" parent="held item/pistol"]
+visible = false
+color = Color(1, 0.75, 0, 1)
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_item_cull_mask = 3
+texture = ExtResource("6_rvgh8")
+
+[node name="muzzle flash" type="PointLight2D" parent="held item/pistol"]
+visible = false
+energy = 2.0
+texture = SubResource("CompressedTexture2D_wlarr")
+offset = Vector2(50, 0)
+texture_scale = 0.1
 
 [node name="Head" type="Node2D" parent="."]
 
@@ -48,8 +86,30 @@ texture_filter = 1
 texture = ExtResource("4_275og")
 
 [node name="Head Occluder" type="LightOccluder2D" parent="Head"]
-visible = false
 occluder = SubResource("OccluderPolygon2D_rvgh8")
 occluder_light_mask = 2
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="player detection" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 3
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="player detection"]
+polygon = PackedVector2Array(0, 0, 503, -165, 503, 165)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player detection"]
+shape = SubResource("CircleShape2D_oif6e")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(600, 0)
+
+[node name="shooting cooldown" type="Timer" parent="."]
+wait_time = 0.001
+autostart = true
+
+[connection signal="body_entered" from="player detection" to="." method="_on_player_detection_body_entered"]
+[connection signal="timeout" from="shooting cooldown" to="." method="_on_shooting_cooldown_timeout"]
+
+[editable path="held item/pistol"]

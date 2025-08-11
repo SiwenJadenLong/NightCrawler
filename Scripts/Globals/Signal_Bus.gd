@@ -15,3 +15,6 @@ signal pass_max_capacity
 
 #Gameplay Signals:
 signal player_death()
+
+signal winconditioncheck
+signal win

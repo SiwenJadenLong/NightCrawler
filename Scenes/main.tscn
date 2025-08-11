@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://h0hooftna8w5"]
+[gd_scene load_steps=7 format=3 uid="uid://h0hooftna8w5"]
 
 [ext_resource type="Script" uid="uid://chuer7i1i8ry8" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://b3dx084i668og" path="res://Scripts/death_screen.gd" id="2_jjvhh"]
 [ext_resource type="Texture2D" uid="uid://c0omf4ofsl82m" path="res://images/UI/Death Visual.png" id="3_kry3j"]
 [ext_resource type="Theme" uid="uid://lb13cns70kec" path="res://Scenes/maps/Main Menu Buttons.tres" id="4_21xkr"]
 [ext_resource type="AudioStream" uid="uid://brxl01cs6otit" path="res://Assets/Music/Ready or Not - Death - OST - Official Supporter Edition Release.mp3" id="5_kry3j"]
+[ext_resource type="LabelSettings" uid="uid://dpkms2ygcxqyb" path="res://Resources/Main Menu UI.tres" id="6_21xkr"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_jjgbg")
@@ -79,5 +80,40 @@ text = "Restart"
 [node name="Death_music" type="AudioStreamPlayer" parent="screen effects/Popups/Death Screen"]
 stream = ExtResource("5_kry3j")
 volume_db = -20.0
+
+[node name="Win" type="Control" parent="screen effects/Popups"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Black" type="ColorRect" parent="screen effects/Popups/Win"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="screen effects/Popups/Win"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_21xkr")
+text = "win"
+label_settings = ExtResource("6_21xkr")
 
 [connection signal="pressed" from="screen effects/Popups/Death Screen/Restart" to="screen effects/Popups/Death Screen" method="_on_restart_pressed"]

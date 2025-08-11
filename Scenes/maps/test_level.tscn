@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://r51i3j8ij1c"]
+[gd_scene load_steps=10 format=3 uid="uid://r51i3j8ij1c"]
 
 [ext_resource type="Script" uid="uid://bdyod6chq6q4" path="res://Scripts/map.gd" id="1_qp5y0"]
 [ext_resource type="Texture2D" uid="uid://djxgfrjk4fpgt" path="res://images/20250627_022632.jpg" id="1_x8avq"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c0gu5kk41jnjf" path="res://Objects/levelobjects/flood_light.tscn" id="5_1q41e"]
 [ext_resource type="PackedScene" uid="uid://cjxqvlxpvyila" path="res://Objects/kill_debug.tscn" id="5_xyloc"]
 [ext_resource type="AudioStream" uid="uid://ba4k3awbb1mh3" path="res://Assets/Music/Thank You, Come Again (Gas).mp3" id="7_4suk7"]
+[ext_resource type="PackedScene" uid="uid://dk3hffpnm42rp" path="res://Objects/levelobjects/generic_enemy.tscn" id="9_wqcic"]
 
 [node name="Test Level" type="Node2D"]
 script = ExtResource("1_qp5y0")
@@ -17,6 +18,7 @@ position = Vector2(1238, 1025)
 texture = ExtResource("1_x8avq")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
 position = Vector2(0, 5)
 blend_mode = 1
 
@@ -56,7 +58,6 @@ rotation = -0.523598
 position = Vector2(629, 674)
 
 [node name="Player" parent="." instance=ExtResource("2_qp5y0")]
-body_rotate_speed = 0.785398
 
 [node name="Map" type="Node2D" parent="."]
 
@@ -114,3 +115,9 @@ position = Vector2(1760, -132)
 stream = ExtResource("7_4suk7")
 volume_db = -25.0
 autoplay = true
+
+[node name="enemies" type="CanvasGroup" parent="."]
+
+[node name="generic enemy" parent="enemies" instance=ExtResource("9_wqcic")]
+position = Vector2(813, 581)
+rotation = -1.83259

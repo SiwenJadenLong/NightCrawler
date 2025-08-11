@@ -15,7 +15,7 @@ func death():
 
 func _on_restart_pressed() -> void:
 	$Death_music.stop()
-	SignalBus.load_level.emit("test_level")
+	SignalBus.load_level.emit("house")
 	$Red.scale.y = 0
 	$Restart.modulate.a = 0
 	hide()

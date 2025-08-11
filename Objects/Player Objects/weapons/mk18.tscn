@@ -29,7 +29,7 @@ size = Vector2(120, 8)
 [node name="weapon" node_paths=PackedStringArray("flashlight_location") instance=ExtResource("1_m0clk")]
 BULLET = ExtResource("2_y5bnn")
 cyclic_rate = 800
-starting_mags = 8
+starting_mags = 4
 mag_capacity = 30
 full_reload_penalty = 1.0
 mag_swap_time = 1.0
@@ -97,6 +97,10 @@ occluder = SubResource("OccluderPolygon2D_m3aoo")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="9"]
 
 [node name="clipping check" parent="." index="10"]
+visible = false
+collision_layer = 2
+collision_mask = 2
+monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" parent="clipping check" index="0"]

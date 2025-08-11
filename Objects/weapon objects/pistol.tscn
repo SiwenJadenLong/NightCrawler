@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv1u6x0p853v4"]
+
+[ext_resource type="PackedScene" uid="uid://bddrowep0dhh4" path="res://Assets/Class Objects/held_item.tscn" id="1_mwe65"]
+[ext_resource type="Texture2D" uid="uid://cs3eaeoiegc8a" path="res://images/Items/Pistol/pistol.png" id="2_rc3pp"]
+
+[node name="held_item" instance=ExtResource("1_mwe65")]
+
+[node name="Left Hand" parent="." index="0"]
+position = Vector2(-13, 0)
+
+[node name="Right Hand" parent="." index="1"]
+position = Vector2(-4, -2)
+
+[node name="item held sprite" parent="." index="2"]
+texture_filter = 1
+texture = ExtResource("2_rc3pp")
