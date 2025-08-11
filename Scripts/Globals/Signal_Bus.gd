@@ -1,5 +1,9 @@
 extends Node
 
+#Main Signals
+signal load_level(level : String)
+
+#Level signals
 signal newobject(object_position : Vector2, object : Node)
 
 #Weapon signals:

@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://lb13cns70kec"]
+
+[ext_resource type="FontFile" uid="uid://bntx8yx0h7x83" path="res://Assets/Resources/Cocogoose-Pro-Light-trial.ttf" id="1_0j5px"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e3t3n"]
+
+[resource]
+Button/font_sizes/font_size = 140
+Button/fonts/font = ExtResource("1_0j5px")
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = SubResource("StyleBoxEmpty_e3t3n")

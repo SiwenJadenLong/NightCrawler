@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://buxmjfl8wli1f" path="res://Scripts/player.gd" id="1_y0qk3"]
 [ext_resource type="Texture2D" uid="uid://ulorwy8n03rf" path="res://Assets/Lighting Textures/flashlight cone11.png" id="2_3y5cq"]
 [ext_resource type="Texture2D" uid="uid://63xu3xwmp3ov" path="res://images/Player/playerbody.png" id="2_5cy28"]
-[ext_resource type="Texture2D" uid="uid://bljrikmb6onar" path="res://Objects/Player Objects/Placeholder hands.tres" id="3_2i4gt"]
+[ext_resource type="Texture2D" uid="uid://44usk2k0ete4" path="res://images/Player/hands.png" id="2_h8u6p"]
 [ext_resource type="Material" uid="uid://dvd6xihwwjifk" path="res://Assets/Resources/Always Brighttres.tres" id="4_0ad8t"]
 [ext_resource type="OccluderPolygon2D" uid="uid://c50yw4bm4iy2o" path="res://Resources/body Occluder.tres" id="4_h8u6p"]
 [ext_resource type="Texture2D" uid="uid://dqxply05j7q63" path="res://images/Player/head.png" id="5_h8u6p"]
@@ -60,8 +60,9 @@ polygon = PackedVector2Array(16, -45, 29, -37, 18, -16, 21, -9, 14, 19, 9, 23, 2
 [node name="Hands" type="Node2D" parent="."]
 
 [node name="Left Hand" type="Sprite2D" parent="Hands"]
+texture_filter = 1
 position = Vector2(60, -36)
-texture = ExtResource("3_2i4gt")
+texture = ExtResource("2_h8u6p")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Hands/Left Hand"]
 visible = false
@@ -69,7 +70,7 @@ occluder = SubResource("OccluderPolygon2D_0ad8t")
 
 [node name="Right Hand" type="Sprite2D" parent="Hands"]
 position = Vector2(60, 36)
-texture = ExtResource("3_2i4gt")
+texture = ExtResource("2_h8u6p")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Hands/Right Hand"]
 visible = false
@@ -93,7 +94,7 @@ shadow_filter = 1
 shadow_filter_smooth = 1.0
 shadow_item_cull_mask = 3
 texture = ExtResource("2_3y5cq")
-offset = Vector2(1000, 0)
+offset = Vector2(985, 0)
 
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="Body"]
 occluder = ExtResource("4_h8u6p")

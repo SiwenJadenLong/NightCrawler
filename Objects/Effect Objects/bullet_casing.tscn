@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://6sl754nlsgx4"]
 
 [ext_resource type="Texture2D" uid="uid://ov0838qvb0si" path="res://images/Items/Weapon Accessories/bullet casing.png" id="1_4tqse"]
-[ext_resource type="Script" uid="uid://b4w7ykahenhst" path="res://bullet_casing.gd" id="2_e3dui"]
+[ext_resource type="Script" uid="uid://b4w7ykahenhst" path="res://Scripts/bullet_casing.gd" id="2_e3dui"]
 
 [node name="bullet casing" type="Sprite2D"]
 texture = ExtResource("1_4tqse")

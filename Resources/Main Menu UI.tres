@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dpkms2ygcxqyb"]
+
+[ext_resource type="FontFile" uid="uid://cnm61aih4pql2" path="res://Assets/Resources/Cocogoose-Pro-Darkmode-trial.ttf" id="1_cnunc"]
+
+[resource]
+font = ExtResource("1_cnunc")
+font_size = 70

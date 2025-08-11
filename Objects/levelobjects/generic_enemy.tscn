@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk3hffpnm42rp"]
+
+[ext_resource type="Script" uid="uid://dfcci7dc4qs43" path="res://generic_enemy.gd" id="1_bfbba"]
+
+[node name="generic enemy" type="CharacterBody2D"]
+script = ExtResource("1_bfbba")
+
+[node name="Physics Collision" type="CollisionShape2D" parent="."]
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Head" type="Node2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

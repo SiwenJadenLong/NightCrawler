@@ -7,6 +7,12 @@ extends Node
 
 var level_instance;
 
+
+func _ready() -> void:
+	load_new_map("main_menu")
+	SignalBus.load_level.connect(load_new_map)
+	GlobalVariables.debug = debugvariable
+
 func unload_level() -> void:
 	if (is_instance_valid(level_instance)):
 		level_instance.queue_free();
@@ -25,8 +31,3 @@ func load_new_map(map_name) -> void:
 	if level_resource:
 		level_instance = level_resource.instantiate();
 		level_container.add_child(level_instance);
-
-func _ready() -> void:
-	GlobalVariables.debug = debugvariable
-	load_new_map("test_level")
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);

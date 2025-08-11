@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6l8hw2byoarl"]
+
+[ext_resource type="FontFile" uid="uid://bntx8yx0h7x83" path="res://Assets/Resources/Cocogoose-Pro-Light-trial.ttf" id="1_ffc3q"]
+[ext_resource type="Script" uid="uid://smtkhdpigt21" path="res://Scripts/main_menu.gd" id="1_v7lgf"]
+[ext_resource type="AudioStream" uid="uid://c5eexccjudk7b" path="res://Assets/Music/01. Police Theme.mp3" id="2_ffc3q"]
+[ext_resource type="Theme" uid="uid://lb13cns70kec" path="res://Scenes/maps/Main Menu Buttons.tres" id="2_v7lgf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dakbd"]
+font = ExtResource("1_ffc3q")
+font_size = 150
+
+[node name="Main Menu" type="Node2D"]
+script = ExtResource("1_v7lgf")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "NIGHT CRAWLER"
+label_settings = SubResource("LabelSettings_dakbd")
+horizontal_alignment = 2
+justification_flags = 162
+
+[node name="Play Button" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_v7lgf")
+text = "Play"
+alignment = 2
+text_direction = 1
+
+[node name="Quit" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_v7lgf")
+text = "Quit"
+alignment = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ffc3q")
+volume_db = -20.0
+autoplay = true
+
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Play Button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

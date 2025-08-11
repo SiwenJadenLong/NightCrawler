@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxfsohl41n0p6"]
+
+[ext_resource type="Script" uid="uid://bdyod6chq6q4" path="res://Scripts/map.gd" id="1_xma3c"]
+[ext_resource type="AudioStream" uid="uid://3gusiguhsoho" path="res://Assets/Music/RON 28. Gas Combat Theme.mp3" id="2_0p4bt"]
+
+[node name="level_templete" type="Node2D"]
+script = ExtResource("1_xma3c")
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Terrain"]
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="Spawn Objects" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0p4bt")
+volume_db = -25.0
