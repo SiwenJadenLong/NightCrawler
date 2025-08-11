@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bmneqk6ljlwu6"]
+[gd_scene load_steps=19 format=3 uid="uid://bmneqk6ljlwu6"]
 
 [ext_resource type="PackedScene" uid="uid://5rcl06f1funm" path="res://Assets/Class Objects/weapon templete.tscn" id="1_m0clk"]
 [ext_resource type="PackedScene" uid="uid://bgesilm6dvxpt" path="res://Objects/Effect Objects/bullet.tscn" id="2_y5bnn"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dyd73eqvbqo1r" path="res://Assets/Sounds/mk18/mk18 bolt forward.wav" id="7_vvf8j"]
 [ext_resource type="AudioStream" uid="uid://ce1wyg8x32sba" path="res://Assets/Sounds/hk usp 9mm/9mm mag drop.wav" id="7_w6dr4"]
 [ext_resource type="AudioStream" uid="uid://bkj64wdmyufek" path="res://Assets/Sounds/mk18/mk18 bolt backward.wav" id="8_ru4qv"]
+[ext_resource type="PackedScene" uid="uid://clbcqqwxf7e6k" path="res://Objects/weapon objects/flashlight attachment.tscn" id="14_oiigo"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s76kd"]
 load_path = "res://.godot/imported/Muzzle Flash 1.png-877630213624de0095ffe5d7b63d884a.ctex"
@@ -25,14 +26,15 @@ polygon = PackedVector2Array(65, -4, 12, -4, 8, -4, -6, -4, -7, -3, -18, -3, -21
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w6dr4"]
 size = Vector2(120, 8)
 
-[node name="weapon" instance=ExtResource("1_m0clk")]
+[node name="weapon" node_paths=PackedStringArray("flashlight_location") instance=ExtResource("1_m0clk")]
 BULLET = ExtResource("2_y5bnn")
 cyclic_rate = 800
 starting_mags = 8
 mag_capacity = 30
 full_reload_penalty = 1.0
 mag_swap_time = 1.0
-default_left_hand_offset = Vector2(25, 30)
+flashlight_location = NodePath("Attachment Point1/flashlight")
+default_left_hand_offset = Vector2(25, 20)
 dropped_mag = ExtResource("3_y5bnn")
 bullet_casing = ExtResource("4_8tq6r")
 firing_sound = ExtResource("5_8tq6r")
@@ -61,7 +63,9 @@ texture_filter = 1
 position = Vector2(18, 0)
 
 [node name="Attachment Point1" parent="." index="3"]
-position = Vector2(48, 4)
+position = Vector2(48, -4)
+
+[node name="flashlight" parent="Attachment Point1" index="0" instance=ExtResource("14_oiigo")]
 
 [node name="Muzzle Device" parent="." index="4"]
 position = Vector2(78, 0)

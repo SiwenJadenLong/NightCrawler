@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dipc1eh6gg1bg"]
 
 [ext_resource type="Texture2D" uid="uid://ge018bmnurta" path="res://images/UI/greymag.png" id="1_eem5b"]
-[ext_resource type="Script" uid="uid://cdp16qrx2u45v" path="res://Scenes/dropped_mag.gd" id="2_hfdyc"]
+[ext_resource type="Script" uid="uid://cdp16qrx2u45v" path="res://Scripts/dropped_mag.gd" id="2_hfdyc"]
 
 [node name="DroppedMag" type="Sprite2D"]
 scale = Vector2(0.2, 0.2)

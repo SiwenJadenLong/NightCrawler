@@ -1,14 +1,55 @@
-[gd_scene load_steps=2 format=3 uid="uid://dk3hffpnm42rp"]
+[gd_scene load_steps=7 format=3 uid="uid://dk3hffpnm42rp"]
 
 [ext_resource type="Script" uid="uid://dfcci7dc4qs43" path="res://generic_enemy.gd" id="1_bfbba"]
+[ext_resource type="Texture2D" uid="uid://b1l00etgoq85g" path="res://images/Enemy/enemy body.png" id="2_xh6mb"]
+[ext_resource type="OccluderPolygon2D" uid="uid://c50yw4bm4iy2o" path="res://Resources/body Occluder.tres" id="3_oif6e"]
+[ext_resource type="Texture2D" uid="uid://bftvdlmmcihlg" path="res://images/Enemy/enemy head.png" id="4_275og"]
+[ext_resource type="Texture2D" uid="uid://44usk2k0ete4" path="res://images/Player/hands.png" id="4_oif6e"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rvgh8"]
+cull_mode = 1
+polygon = PackedVector2Array(-5, -20, -10, -20, -16, -10, -18.1, -5.1, -18.1, 5.1, -16, 9, -12, 14, -10, 19, 7, 19, 13, 14, 18, 7, 18, -4, 15, -12, 10.1, -16.1, 7, -20)
 
 [node name="generic enemy" type="CharacterBody2D"]
 script = ExtResource("1_bfbba")
 
-[node name="Physics Collision" type="CollisionShape2D" parent="."]
+[node name="Collision Polygon" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(16, -45, 29, -37, 18, -16, 21, -9, 14, 19, 9, 23, 6, 22, 2, 44, -4, 49, -15, 44, -17, 14, -22, 9, -12, -23, -4, -25)
 
 [node name="Body" type="Node2D" parent="."]
 
+[node name="Body" type="Sprite2D" parent="Body"]
+texture_filter = 1
+texture = ExtResource("2_xh6mb")
+
+[node name="Body Occluder" type="LightOccluder2D" parent="Body"]
+occluder = ExtResource("3_oif6e")
+occluder_light_mask = 3
+
+[node name="Hands" type="Node2D" parent="."]
+
+[node name="Left Hand" type="Sprite2D" parent="Hands"]
+modulate = Color(0.369812, 1, 0.316406, 1)
+texture_filter = 1
+position = Vector2(60, -36)
+texture = ExtResource("4_oif6e")
+
+[node name="Right Hand" type="Sprite2D" parent="Hands"]
+modulate = Color(0.368627, 1, 0.317647, 1)
+position = Vector2(60, 36)
+texture = ExtResource("4_oif6e")
+
+[node name="Held Gun" type="Node2D" parent="."]
+
 [node name="Head" type="Node2D" parent="."]
+
+[node name="Head" type="Sprite2D" parent="Head"]
+texture_filter = 1
+texture = ExtResource("4_275og")
+
+[node name="Head Occluder" type="LightOccluder2D" parent="Head"]
+visible = false
+occluder = SubResource("OccluderPolygon2D_rvgh8")
+occluder_light_mask = 2
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

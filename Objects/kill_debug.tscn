@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjxqvlxpvyila"]
+
+[ext_resource type="Script" uid="uid://b0jfhgk0xv1l4" path="res://kill_debug.gd" id="1_fg5uw"]
+[ext_resource type="Theme" uid="uid://lb13cns70kec" path="res://Scenes/maps/Main Menu Buttons.tres" id="2_0vxpk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ftt3"]
+size = Vector2(50, 50)
+
+[node name="Kill debug" type="Area2D"]
+script = ExtResource("1_fg5uw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4ftt3")
+
+[node name="TextureRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(1, 0, 0, 0.519)
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_0vxpk")
+text = "Death"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

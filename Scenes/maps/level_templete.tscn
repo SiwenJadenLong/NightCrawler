@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxfsohl41n0p6"]
+[gd_scene load_steps=4 format=3 uid="uid://dxfsohl41n0p6"]
 
 [ext_resource type="Script" uid="uid://bdyod6chq6q4" path="res://Scripts/map.gd" id="1_xma3c"]
 [ext_resource type="AudioStream" uid="uid://3gusiguhsoho" path="res://Assets/Music/RON 28. Gas Combat Theme.mp3" id="2_0p4bt"]
+[ext_resource type="PackedScene" uid="uid://cw2brncu5mcfk" path="res://Objects/Player Objects/player.tscn" id="2_5f2jb"]
 
 [node name="level_templete" type="Node2D"]
 script = ExtResource("1_xma3c")
@@ -14,8 +15,14 @@ script = ExtResource("1_xma3c")
 
 [node name="Player" type="Node2D" parent="."]
 
+[node name="Player" parent="Player" instance=ExtResource("2_5f2jb")]
+
 [node name="Spawn Objects" type="Node2D" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_0p4bt")
 volume_db = -25.0
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(0, -6)
+blend_mode = 1

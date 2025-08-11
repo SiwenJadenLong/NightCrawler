@@ -8,10 +8,12 @@ class_name player
 @onready var left_hand: Sprite2D = $"Hands/Left Hand"
 @onready var right_hand: Sprite2D = $"Hands/Right Hand"
 @onready var head: Node2D = $Head
-
+@onready var head_lamp: PointLight2D = $"Head/head lamp"
 
 var cameralocked : bool = true
 const SPEED = 200
+
+var hp : int = 100
 
 enum states{
 	alive,
@@ -57,9 +59,10 @@ func _physics_process(delta: float) -> void:
 			else:
 				camera_view_ahead()
 			
-			if Input.is_action_just_pressed("Flashlight toggle"):
+			if Input.is_action_just_pressed("Head Lamp toggle"):
 #				Placeholder for placeholder flashflight
-				$Body/PointLight2D.visible = !$Body/PointLight2D.visible
+				if head_lamp:
+					head_lamp.visible = !head_lamp.visible
 			if Input.is_action_just_pressed("check mag placeholder"):
 #				Placeholder show magazines for a couple seconds
 				SignalBus.show_magazines.emit()
@@ -90,3 +93,8 @@ func turn_to_cursor():
 	
 func camera_view_ahead():
 	Camera.global_position = (position+get_global_mouse_position())/2
+
+func damage(damage_taken):
+	hp = clamp(hp-damage_taken, 0, 100)
+	if hp == 0:
+		SignalBus.player_death.emit()

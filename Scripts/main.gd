@@ -2,6 +2,7 @@ extends Node
 
 
 # Called when the node enters the scene tree for the first time.
+@onready var death_screen: Control = $"screen effects/Popups/Death Screen"
 @onready var level_container: Node2D = $"Level Container"
 @export var debugvariable : bool = false
 
@@ -11,6 +12,7 @@ var level_instance;
 func _ready() -> void:
 	load_new_map("main_menu")
 	SignalBus.load_level.connect(load_new_map)
+	SignalBus.player_death.connect(death)
 	GlobalVariables.debug = debugvariable
 
 func unload_level() -> void:
@@ -31,3 +33,7 @@ func load_new_map(map_name) -> void:
 	if level_resource:
 		level_instance = level_resource.instantiate();
 		level_container.add_child(level_instance);
+
+func death():
+	unload_level()
+	death_screen.show()

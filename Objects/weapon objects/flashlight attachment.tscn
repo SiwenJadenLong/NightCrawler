@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://clbcqqwxf7e6k"]
+
+[ext_resource type="Script" uid="uid://drs4bnv32id6x" path="res://Scripts/flashlight_attachment.gd" id="1_ffqba"]
+[ext_resource type="Texture2D" uid="uid://ctcov23tnu735" path="res://images/Items/Weapon Accessories/flashlight attachment.png" id="1_q48ww"]
+[ext_resource type="Texture2D" uid="uid://c7x60ypiym20p" path="res://Assets/Lighting Textures/flashlight cone18.png" id="2_tccyq"]
+
+[node name="flashlight" type="Marker2D"]
+script = ExtResource("1_ffqba")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -2)
+texture = ExtResource("1_q48ww")
+
+[node name="Light" type="PointLight2D" parent="."]
+light_mask = 7
+position = Vector2(50, 0)
+scale = Vector2(2, 4)
+energy = 1.5
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+shadow_item_cull_mask = 3
+texture = ExtResource("2_tccyq")
+offset = Vector2(980, 0)

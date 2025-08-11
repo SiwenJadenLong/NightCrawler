@@ -1,18 +1,83 @@
-[gd_scene load_steps=2 format=3 uid="uid://h0hooftna8w5"]
+[gd_scene load_steps=6 format=3 uid="uid://h0hooftna8w5"]
 
 [ext_resource type="Script" uid="uid://chuer7i1i8ry8" path="res://Scripts/main.gd" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://b3dx084i668og" path="res://Scripts/death_screen.gd" id="2_jjvhh"]
+[ext_resource type="Texture2D" uid="uid://c0omf4ofsl82m" path="res://images/UI/Death Visual.png" id="3_kry3j"]
+[ext_resource type="Theme" uid="uid://lb13cns70kec" path="res://Scenes/maps/Main Menu Buttons.tres" id="4_21xkr"]
+[ext_resource type="AudioStream" uid="uid://brxl01cs6otit" path="res://Assets/Music/Ready or Not - Death - OST - Official Supporter Edition Release.mp3" id="5_kry3j"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_jjgbg")
 
 [node name="Level Container" type="Node2D" parent="."]
 
-[node name="UI" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="screen effects" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Popups" type="Control" parent="screen effects"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Death Screen" type="Control" parent="screen effects/Popups"]
 visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_jjvhh")
+
+[node name="Black" type="ColorRect" parent="screen effects/Popups/Death Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Red" type="TextureRect" parent="screen effects/Popups/Death Screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+pivot_offset = Vector2(960, 540)
+texture = ExtResource("3_kry3j")
+
+[node name="Restart" type="Button" parent="screen effects/Popups/Death Screen"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_21xkr")
+text = "Restart"
+
+[node name="Death_music" type="AudioStreamPlayer" parent="screen effects/Popups/Death Screen"]
+stream = ExtResource("5_kry3j")
+volume_db = -20.0
+
+[connection signal="pressed" from="screen effects/Popups/Death Screen/Restart" to="screen effects/Popups/Death Screen" method="_on_restart_pressed"]

@@ -12,3 +12,6 @@ signal updateroundcount(current_roundcount : int)
 signal show_magazines
 signal hide_magazines
 signal pass_max_capacity
+
+#Gameplay Signals:
+signal player_death()

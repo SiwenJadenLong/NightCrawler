@@ -10,10 +10,24 @@ var mag_in_hand : int
 var weapon_locked : bool = false
 var barrel_clipping : bool = false
 
+#Double Tap Code
 var double_tap_delay := 0.25
 var double_tap_time : float
 var reload_taps : int = 0
 var last_action
+
+enum states{
+	chambered_mag,
+	unchambered_mag,
+	chambered_no_mag,
+	unchambered_no_mag,
+	bolt_back_mag,
+	bolt_back_no_mag
+}
+
+var weaponstate : states = states.chambered_mag
+var magazines : Array[int]
+var current_roundcount : int
 
 @export_category("Stats")
 @export var weapon_damage : int = 40
@@ -29,6 +43,9 @@ var last_action
 @export_subgroup("Reloading")
 @export var full_reload_penalty : float
 @export var mag_swap_time : float
+
+@export_category("attachments")
+@export var flashlight_location : Node
 
 @export_category("Positioning")
 @export var default_left_hand_offset : Vector2 = Vector2(0,50)
@@ -65,19 +82,11 @@ var last_action
 @onready var muzzle_flash_lighting: PointLight2D = $"Muzzle Device/muzzle flash lighting"
 @onready var muzzle_flash: PointLight2D = $"Muzzle Device/muzzle flash"
 @onready var clipping_check: Area2D = $"clipping check"
+@onready var attachment_point_1: Marker2D = $"Attachment Point1"
 
-enum states{
-	chambered_mag,
-	unchambered_mag,
-	chambered_no_mag,
-	unchambered_no_mag,
-	bolt_back_mag,
-	bolt_back_no_mag
-}
 
-var weaponstate : states = states.chambered_mag
-var magazines : Array[int]
-var current_roundcount : int
+
+
 
 #Debug variables:
 @onready var debug: Node2D = $debug
@@ -141,7 +150,9 @@ func _physics_process(_delta: float) -> void:
 				state_label.text = "bolt_back_mag"
 			states.bolt_back_no_mag:
 				state_label.text = "bolt_back_no_mag"
-
+	if Input.is_action_just_pressed("Gun Light Toggle"):
+		if flashlight_location.name == "flashlight":
+			flashlight_location.toggle_light()
 	if !weapon_locked:
 		match weaponstate:
 				states.chambered_mag:
@@ -276,7 +287,7 @@ func drop_mag():
 	sound_manager.play_2D_sound(global_position, mag_eject,"Sound Effects", true)
 	var new_dropped_mag = dropped_mag.instantiate()
 	SignalBus.newobject.emit(global_position, new_dropped_mag, randf_range(0, 2*PI))
-	await get_tree().create_timer(0.25)
+	await get_tree().create_timer(0.1).timeout
 	sound_manager.play_2D_sound(global_position, mag_drop,"Sound Effects", true)
 
 func pickupround():
@@ -311,6 +322,8 @@ func _on_shooting_cooldown_timeout() -> void:
 	pickupround()
 	shooting_cooldown.stop()
 
+func activate_attachment1():
+	attachment_point_1.get_child(0).visible = !attachment_point_1.get_child(0).visible
 
 #func _on_clipping_check_body_entered(body: Node2D) -> void:
 	#print(clipping_check.get_overlapping_bodies())

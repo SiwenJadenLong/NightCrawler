@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://dvd6xihwwjifk" path="res://Assets/Resources/Always Brighttres.tres" id="4_0ad8t"]
 [ext_resource type="OccluderPolygon2D" uid="uid://c50yw4bm4iy2o" path="res://Resources/body Occluder.tres" id="4_h8u6p"]
 [ext_resource type="Texture2D" uid="uid://dqxply05j7q63" path="res://images/Player/head.png" id="5_h8u6p"]
-[ext_resource type="Script" uid="uid://ca3kpkp0rjy1k" path="res://Objects/magazine_display.gd" id="5_x20fu"]
+[ext_resource type="Script" uid="uid://ca3kpkp0rjy1k" path="res://Scripts/magazine_display.gd" id="5_x20fu"]
 [ext_resource type="Texture2D" uid="uid://ge018bmnurta" path="res://images/UI/greymag.png" id="6_ng3n2"]
 [ext_resource type="Texture2D" uid="uid://cgk7001yf2bey" path="res://images/UI/white mag.png" id="7_f7am4"]
 [ext_resource type="FontFile" uid="uid://bv6vblpogp2mw" path="res://Assets/Resources/Kenyan Coffee Rg.otf" id="7_ng3n2"]
@@ -84,19 +84,8 @@ occluder = SubResource("OccluderPolygon2D_0ar0x")
 texture_filter = 1
 texture = ExtResource("2_5cy28")
 
-[node name="PointLight2D" type="PointLight2D" parent="Body"]
-light_mask = 7
-position = Vector2(50, 0)
-scale = Vector2(2, 4)
-energy = 1.5
-shadow_enabled = true
-shadow_filter = 1
-shadow_filter_smooth = 1.0
-shadow_item_cull_mask = 3
-texture = ExtResource("2_3y5cq")
-offset = Vector2(985, 0)
-
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="Body"]
+visible = false
 occluder = ExtResource("4_h8u6p")
 occluder_light_mask = 3
 
@@ -108,6 +97,18 @@ texture = ExtResource("5_h8u6p")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Head"]
 occluder = SubResource("OccluderPolygon2D_x20fu")
 occluder_light_mask = 2
+
+[node name="head lamp" type="PointLight2D" parent="Head"]
+light_mask = 7
+position = Vector2(50, 0)
+scale = Vector2(2, 4)
+energy = 0.3
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+shadow_item_cull_mask = 3
+texture = ExtResource("2_3y5cq")
+offset = Vector2(984, 0)
 
 [node name="Holstered items" type="Node2D" parent="."]
 
