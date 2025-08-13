@@ -107,3 +107,8 @@ Reload={
 
 2d_render/layer_1="Body Level"
 2d_render/layer_2="Head Level"
+
+[rendering]
+
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
