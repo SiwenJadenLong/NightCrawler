@@ -14,7 +14,10 @@ signal hide_magazines
 signal pass_max_capacity
 
 #Gameplay Signals:
-signal player_death()
+signal player_death
 
 signal winconditioncheck
 signal win
+
+#Player Signals
+signal update_player_hp_effects()

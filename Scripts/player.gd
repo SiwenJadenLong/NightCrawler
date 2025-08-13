@@ -14,7 +14,6 @@ var cameralocked : bool = true
 const SPEED = 200
 
 var hearing_concusison : int = 0
-var hp : int = 100
 
 enum states{
 	alive,
@@ -97,16 +96,5 @@ func camera_view_ahead():
 	Camera.global_position = (position+get_global_mouse_position())/2
 
 func damage(damage_taken):
-	hp = clamp(hp-damage_taken, 0, 100)
-	if hp == 60:
-		AudioServer.add_bus_effect(1, AudioEffectReverb.new())
-	elif hp == 20:
-		var new_amplify = AudioEffectAmplify.new()
-		new_amplify.volume_db = -30
-		AudioServer.add_bus_effect(1, new_amplify)
-		AudioServer.add_bus_effect(1, AudioEffectDistortion.new())
-	
-	if hp == 0:
-		SignalBus.player_death.emit()
-		for i in AudioServer.get_bus_effect_count(1):
-			AudioServer.remove_bus_effect(1, 0)
+	GlobalVariables.player_hp = clamp(GlobalVariables.player_hp-damage_taken, 0, 100)
+	SignalBus.update_player_hp_effects.emit()

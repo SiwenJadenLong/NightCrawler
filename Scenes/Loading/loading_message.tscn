@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://2jjo8yqmlccg"]
+
+[ext_resource type="Texture2D" uid="uid://bcyfq6vdnyc82" path="res://images/UI/Headphone Icon.png" id="1_r4jqi"]
+[ext_resource type="LabelSettings" uid="uid://dpkms2ygcxqyb" path="res://Resources/Main Menu UI.tres" id="2_lb0np"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frver"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Loading Message" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_frver")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -327.5
+offset_top = -372.0
+offset_right = 327.5
+offset_bottom = 372.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_r4jqi")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "BEST PLAYED WITH HEADPHONES"
+label_settings = ExtResource("2_lb0np")

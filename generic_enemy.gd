@@ -72,11 +72,15 @@ func turn_towards_thing(thing):
 		held_item.get_child(0).look_at(thing)
 func _on_player_detection_body_entered(body: Node2D) -> void:
 	if body is player:
+		await get_tree().create_timer(0.5).timeout
 		ray_cast_2d.look_at(body.global_position)
+		
+#		Await Physics Frame for Raycast Detection
 		await get_tree().physics_frame
 		await get_tree().physics_frame
 		await get_tree().physics_frame
 		await get_tree().physics_frame
+		
 		var casted = ray_cast_2d.get_collider()
 		if casted is player:
 			last_known_player_position = body.global_position

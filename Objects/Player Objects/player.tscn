@@ -85,7 +85,6 @@ texture_filter = 1
 texture = ExtResource("2_5cy28")
 
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="Body"]
-visible = false
 occluder = ExtResource("4_h8u6p")
 occluder_light_mask = 3
 
@@ -101,8 +100,8 @@ occluder_light_mask = 2
 [node name="head lamp" type="PointLight2D" parent="Head"]
 light_mask = 7
 position = Vector2(50, 0)
-scale = Vector2(2, 4)
-energy = 0.3
+scale = Vector2(2, 6)
+energy = 0.4
 shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 1.0
