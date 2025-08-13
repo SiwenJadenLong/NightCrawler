@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpdkwxngy8gr6"]
+[gd_scene load_steps=4 format=3 uid="uid://bpdkwxngy8gr6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q54lr"]
 size = Vector2(500, 40)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q54lr"]
+light_mode = 1
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_c5wrs"]
 polygon = PackedVector2Array(-250, -20, 250, -20, 250, 20, -250, 20)
@@ -12,6 +15,7 @@ polygon = PackedVector2Array(-250, -20, 250, -20, 250, 20, -250, 20)
 shape = SubResource("RectangleShape2D_q54lr")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("CanvasItemMaterial_q54lr")
 custom_minimum_size = Vector2(500, 40)
 anchors_preset = 8
 anchor_left = 0.5
@@ -22,7 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color(0, 0, 0, 1)
+color = Color(0.03125, 0.03125, 0.03125, 1)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_c5wrs")
