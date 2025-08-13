@@ -170,33 +170,52 @@ metadata/_edit_lock_ = true
 position = Vector2(3869, 8320)
 rotation = -1.83259
 
-[node name="generic enemy2" parent="enemies" index="1" instance=ExtResource("4_gnses")]
+[node name="generic enemy10" parent="enemies" index="1" instance=ExtResource("4_gnses")]
+position = Vector2(3594, 7664)
+rotation = -4.71238
+
+[node name="generic enemy9" parent="enemies" index="2" instance=ExtResource("4_gnses")]
+position = Vector2(3594, 7152)
+
+[node name="generic enemy8" parent="enemies" index="3" instance=ExtResource("4_gnses")]
+position = Vector2(4855, 6889)
+rotation = -4.71238
+
+[node name="generic enemy2" parent="enemies" index="4" instance=ExtResource("4_gnses")]
 position = Vector2(3557, 7472)
 rotation = -6.28318
 
-[node name="generic enemy3" parent="enemies" index="2" instance=ExtResource("4_gnses")]
+[node name="generic enemy3" parent="enemies" index="5" instance=ExtResource("4_gnses")]
 position = Vector2(4280, 8049)
 rotation = -4.71238
 
-[node name="generic enemy4" parent="enemies" index="3" instance=ExtResource("4_gnses")]
+[node name="generic enemy4" parent="enemies" index="6" instance=ExtResource("4_gnses")]
 position = Vector2(5096, 7658)
 rotation = -4.71238
 
-[node name="generic enemy5" parent="enemies" index="4" instance=ExtResource("4_gnses")]
+[node name="generic enemy5" parent="enemies" index="7" instance=ExtResource("4_gnses")]
 position = Vector2(4068, 6872)
 rotation = -4.71238
 
-[node name="generic enemy6" parent="enemies" index="5" instance=ExtResource("4_gnses")]
+[node name="generic enemy6" parent="enemies" index="8" instance=ExtResource("4_gnses")]
 position = Vector2(5069, 6791)
 rotation = -6.28318
 
-[node name="generic enemy7" parent="enemies" index="6" instance=ExtResource("4_gnses")]
+[node name="generic enemy7" parent="enemies" index="9" instance=ExtResource("4_gnses")]
 position = Vector2(5539, 7440)
 rotation = -3.40339
 
 [node name="FloodLight" parent="Spawn Objects" index="0" instance=ExtResource("5_dso76")]
 position = Vector2(3963, 7933)
 rotation = 2.35619
+
+[node name="FloodLight2" parent="Spawn Objects" index="1" instance=ExtResource("5_dso76")]
+position = Vector2(3937, 7013)
+rotation = 2.87979
+
+[node name="FloodLight3" parent="Spawn Objects" index="2" instance=ExtResource("5_dso76")]
+position = Vector2(6426, 6787)
+rotation = 2.87979
 
 [node name="AudioStreamPlayer" parent="." index="6"]
 stream = ExtResource("5_a47c6")

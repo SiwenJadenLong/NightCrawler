@@ -88,12 +88,12 @@ func _on_player_detection_body_entered(body: Node2D) -> void:
 
 func shoot():
 	if shooting_cooldown.time_left == 0:
-		shooting_cooldown.start(0.4)
+		shooting_cooldown.start(0.6)
 		play_firing_sounds()
 		show_muzzle_flash()
 		var bullet = BULLET.instantiate()
 		bullet.tracer_timeout = 0.2
-		bullet.damage = 40
+		bullet.damage = 30
 		bullet.initial_position = held_item.global_position
 		SignalBus.newobject.emit(pistol.global_position, bullet, global_rotation)
 		SignalBus.newobject.emit(pistol.global_position, bullet_casing.instantiate(), global_rotation)

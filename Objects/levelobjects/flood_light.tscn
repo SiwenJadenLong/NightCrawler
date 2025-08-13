@@ -16,7 +16,7 @@ offset_top = -10.0
 offset_right = 20.0
 offset_bottom = 10.0
 pivot_offset = Vector2(20, 10)
-color = Color(0.945313, 0, 1, 1)
+color = Color(0.0311279, 0.0358295, 0.332031, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 shadow_enabled = true
