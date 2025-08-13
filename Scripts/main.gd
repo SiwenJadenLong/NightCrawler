@@ -11,6 +11,15 @@ extends Node
 @export var loading_message : PackedScene
 var level_instance;
 
+#Audio:
+var amplification_effect : AudioEffect = AudioServer.get_bus_effect(1,0)
+var distortion_effect : AudioEffect = AudioServer.get_bus_effect(1,1)
+var reverb_effect : AudioEffect = AudioServer.get_bus_effect(1,2)
+
+var amplification_effect_index : int = 0
+var distortion_effect_index : int = 1
+var reverb_effect_index : int = 2
+
 
 func _ready() -> void:
 	load_new_map("main_menu")
@@ -63,20 +72,18 @@ func win():
 	$"Popups/Popups Control/Win".show()
 
 func update_player_effects():
-	if GlobalVariables.player_hp == 60:
-		AudioServer.add_bus_effect(1, AudioEffectReverb.new())
+	
+	if GlobalVariables.player_hp <= 80 and GlobalVariables.player_hp >= 60:
+		amplification_effect.volume_db = -20
+		AudioServer.set_bus_effect_enabled(1,reverb_effect_index, true)
 		damage_vignette.modulate.a = 0.5
 	
-	elif GlobalVariables.player_hp == 20:
-		var new_amplify = AudioEffectAmplify.new()
-		new_amplify.volume_db = -30
-		AudioServer.add_bus_effect(1, new_amplify)
-		AudioServer.add_bus_effect(1, AudioEffectDistortion.new())
+	elif GlobalVariables.player_hp >= 20:
+		amplification_effect.volume_db = -30
+		AudioServer.set_bus_effect_enabled(1,distortion_effect_index, true)
 		damage_vignette.modulate.a = 1
 	
 	elif GlobalVariables.player_hp == 0:
 		SignalBus.player_death.emit()
-		for i in AudioServer.get_bus_effect_count(1):
-			AudioServer.remove_bus_effect(1, 0)
 		damage_vignette.modulate.a = 0
 		

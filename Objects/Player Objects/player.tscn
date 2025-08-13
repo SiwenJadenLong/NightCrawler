@@ -98,6 +98,7 @@ occluder = SubResource("OccluderPolygon2D_x20fu")
 occluder_light_mask = 2
 
 [node name="head lamp" type="PointLight2D" parent="Head"]
+visible = false
 light_mask = 7
 position = Vector2(50, 0)
 scale = Vector2(2, 6)
